@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+.t1{
+	width: 600px;			
+	margin: 0 auto;
+	border-top: solid 2px black;
+}

@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+/*
+	class , id 정의[만들기]
+		1. 영문
+		2. 띄어쓰기 대신 - , _ 사용
+*/
+
+.signup_title{ text-align: center;}
+.signup_form{
+	width: 600px;
+	margin: 0 auto;
+	border-top: solid 2px red;		/* 위테두리 */
+	border-bottom: solid 2px red;
+	padding: 20px;
+}
+.input_form{
+	text-align: right;
+	padding: 10px 20px;
+	margin: 10px 10px 0px 0px;
+}
+
+.hello{ vertical-align: top; }
