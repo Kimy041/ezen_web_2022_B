@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.b1{
+	text-align: center;
+}
+.l1{
+	width: 100px;
+	display: inline-block;
+	box-sizing: content-box;
+}
