@@ -8,18 +8,17 @@
 
 .t1 td{
 	border-bottom: solid 0.5px #d3d3d3;
-	padding: 5px;
+	padding: 7px;
 }
 
-.tr1{
+.t1 input{
 	width:400px;
-  height:20px;
-  font-size:20px;
+  height:25px;
 }
-.tr2{
+.t1 textarea{
 	width:400px;
   height:100px;
-  font-size:20px;
+  resize: none;
 }
 
 .box{
