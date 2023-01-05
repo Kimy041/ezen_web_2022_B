@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+#parent1{
+	width: 700px; height: 600px;
+	background-color: green;
+	margin: 0 auto;
+	position: relative;
+}
+
+#parent1 div{
+	width: 100px; height: 50px;
+	background-color: yellow;
+	border-radius: 15px;
+	text-align: center;
+	position: absolute;
+}
+
+.box1{ left: 300px; top: 100px;}
+.box2{ left: 150px; top : 200px;}
+.box3{ right: 150px; top : 200px;}
+.box4{ left: 150px; bottom : 200px;}
+.box5{ right: 150px; bottom : 200px;}
+.box6{ left: 300px; bottom: 100px;}

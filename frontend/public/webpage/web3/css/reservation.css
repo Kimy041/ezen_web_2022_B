@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+#sub_img2{
+	background-image: url("../img/sub_reservation.jpg");
+}
+
+ *{border:1px solid black;} 
+#content{height: 500px;}
+#content div .m_box{
+	width: 700px;
+}
