@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 *{ padding: 0px; margin: 0px; font-family: "맑은고딕"}
-li{ list-style-type: none;}
+/* li{ list-style-type: none;}*/
 a{ color: black; text-decoration: none;}
 
 /* *{ border: 1px solid blue;} */
@@ -20,6 +20,7 @@ a{ color: black; text-decoration: none;}
 .h_menu{ 
 	position:absolute; /* 하위요소에 absolute */
 	right: 0px; top: 30px; 
+	list-style-type: none;
 }
 .h_menu li{ display: inline-block; margin-left: 30px; }
 
@@ -32,7 +33,7 @@ a{ color: black; text-decoration: none;}
 .banner img{ padding: 0px 20px;}
 
 #items{background-color: #eeeeee;}
-.item{width: 270px; margin: 30px 30px;}
+.item{width: 270px; margin: 30px 30px; list-style-type: none;}
 .item img{ width: 100%;}
 .item li{ padding: 3px 0px;}
 
