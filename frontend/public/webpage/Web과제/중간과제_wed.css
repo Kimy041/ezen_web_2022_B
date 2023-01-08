@@ -1,0 +1,61 @@
+@charset "UTF-8";
+*{ padding: 0px; margin: 0px; font-family: "맑은고딕"}
+li{ list-style-type: none;}
+a{ color: black; text-decoration: none;}
+
+/* ------------------------------------- */
+
+#mainbanner{
+	width:100%; height: 600px;	/* 사이즈 */
+	background-image: url("img/mainbanner.gif"); /* 배경이미지 */
+	background-repeat: no-repeat;
+	background-position: center;
+	padding-top: 20px 0px;
+}
+#sub_banner , #content{ width: 1200px; margin: 0 auto; }
+
+.banner{ flex-wrap: wrap; display: flex; justify-content: space-between; }
+.banner img{
+	width: 380px;  
+	padding: 100px 10px 150px 10px; 
+}
+/* ------------------------------------- */
+#sidebar{ border: 1px solid #dbdbdb; background-color: #fafafa;
+width: 2%; position: fixed; right: 0px; top: 50%; }
+#sidebar ul{text-align: center;}
+#sidebar li{border-bottom: 1px solid #dbdbdb; padding:20px 2px; }
+/* ------------------------------------- */
+
+#top_content{ text-align: center; }
+#top_content p{ padding: 20px 0px; color: #999; }
+
+#bottom_content{ display: flex; flex-wrap: wrap; justify-content: space-between; }
+#bottom_content .item{ width: 100%; }
+#bottom_content p{ font-size: 10px;}
+.content_item{ width: 290px; padding: 30px 0px; }
+.content_item .text{ margin: 5px 0px 15px 0px;}
+.drop_icon{ position: relative;}
+.icon{position: absolute; right: 10px; bottom: 10px; display: none;}
+.drop_icon:hover .icon{display: block;}
+.icon img{ width: 23px; border-radius: 50px; opacity: 0.7;}
+.colorbox{ 
+	display: flex; justify-content: space-between;
+	margin-top: 3px;
+}
+.colorbox ul{ display: flex; }
+.colorbox li{
+	width: 5px; height: 5px;
+	border: 1px solid black;
+	margin: 0px 2px;
+}
+
+#bottom_content span{ color: #595959; font-size: 10px; }
+.price{display: flex; justify-content: space-between;}
+.price span{text-decoration: line-through;}
+h4{ color: #D01E29}
+
+
+
+
+
+/* ------------------------------------- */
