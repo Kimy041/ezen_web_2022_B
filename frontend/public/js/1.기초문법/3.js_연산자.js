@@ -142,6 +142,69 @@ let html = '<h3> JS 작성된 코드 </h3>'		// html 마크업 저장할 변수 
 html += '<div> 안녕하세요 </div>'			// 변수에 마크업 추가
 document.write( html );					// 해당 변수 값를 html 출력
 
+// 5. 증감연산자 [data++ , data+=1 , data = data+1]
+let data2 = 10;
+console.log( '변수의 값 : ' + data2 )		// 10
+console.log( '변수++ : ' + (data2++) )	// 10 : 출력후 증가
+console.log( '변수 값 : ' + data2 )		// 확인 : 11
+console.log( '++변수 : ' + (++data2) )	// 12 : 출력전 증가
+
+console.log( '변수-- : ' + (data2--) )	// 12 : 출력후 감소
+console.log( '변수 값 : ' + data2 )		// 확인 : 11
+console.log( '--변수 : ' + (--data2) )	// 10 : 출력전 감소
+
+// 6. 삼항연산자 [조건 ? 참 : 거짓]
+let age = 38;
+let 나이대 = age <=19 ? '청소년' : '성인'	// 조건[38<=19]이 false 이까 '성인' 대입
+console.log( ' 38의 나이대 : ' + 나이대 )
+
+let 점수 = 78;
+let 등급 = 	점수>=90 ? 'A등급' :			// 점수가 90점이상이면 a등급
+			점수>=80 ? 'B등급' : 			// 아니면 점수가 80점이상이면 b등급
+			점수>=70 ? 'C등급' : '탈락'	// 아니면 점수가 70점이상이면 c등급 그외 탈락
+console.log( ' 78점수의 등급 : ' + 등급 )
+
+
+/*
+	문제9 : 정수를 입력받아서 '홀수'인지 '짝수' 출력
+	문제10 : 정수 2개를 입력받아 더 큰수를 출력
+	문제11 : 정수 3개를 입력받아 가장 큰수를 출력
+	문제12 : 정수 3개를 입력받아 오름차순으로 출력	[ 7 5 9 -> 5 7 9 ]
+	
+*/
+
+//문제9
+let value1 = Number(prompt('정수 입력'))
+console.log( value1+'의 홀/짝 판단 : ' + (value1%2==0 ? '짝수' : '홀수') )
+//문제10
+let value2 = Number(prompt('정수2'))
+let value3 = Number(prompt('정수3'))
+console.log( value2 + '과' + value3 + '중 더 큰수는 :' +
+			( value2>value3 ? value2 : value2<value3 ? value3 : ' 두 수는 같다')
+			)
+// 첫번째값이 더 크면 첫번째 값출력 아니면 두번째값이 더크면 두번째값 출력 아니면 두 수는 같다
+// 변수 + 문자 + 변수 + 문자 + (삼항연산자 중첩)
+
+//문제11
+let value4 = Number(prompt('정수4'))
+let value5 = Number(prompt('정수5'))
+let value6 = Number(prompt('정수6'))
+let max = value4	// 가장 큰수 변수에 첫번째 값 대입 / max : 가장 큰수를 저장하는 변수
+max = max < value5 ? value5 : max // 만약에 max보다 더크면 max에 대입
+max = max < value6 ? value6 : max
+console.log( ' 가장 큰 수는 : ' + max)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
