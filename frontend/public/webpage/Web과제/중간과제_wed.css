@@ -15,6 +15,7 @@ a{ color: black; text-decoration: none;}
 	text-align: right;
 	margin: 10px 0px;
 }
+
 #h_bottom{
 	position: relative;
 }
@@ -45,6 +46,10 @@ a{ color: black; text-decoration: none;}
 	padding: 10px 0px;
 }
 .search{ border: none; }
+/*---------------------------*/
+.dep{ position: relative;}
+.dep1{position: absolute; right: 10px; display: none; z-index: 1;}
+.dep:hover .dep1{display: block;}
 
 /* ------------------------------------- */
 
@@ -59,7 +64,7 @@ a{ color: black; text-decoration: none;}
 }
 /* ------------------------------------- */
 #sidebar{ border: 1px solid #dbdbdb; background-color: #fafafa;
-width: 50px; position: fixed; right: 0px; top: 30%; z-index: 1; }
+width: 50px; position: fixed; right: 0px; top: 30%; z-index: 2; }
 #sidebar ul{text-align: center;}
 #sidebar li{border-bottom: 1px solid #dbdbdb; padding:20px 5px; }
 /* ------------------------------------- */
