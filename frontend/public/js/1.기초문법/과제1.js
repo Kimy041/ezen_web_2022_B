@@ -76,22 +76,17 @@ else{console.log('로그인 실패');}
 
 // 과제2.
 function save(){
-	//<input> 마크업을 js변수로 가져오기[DOM객체]
 	let sno2 = document.querySelector('.sno2')
-	// 5. <input> 마크업에 입력된 데이터 호출
 	let snoValue2 = sno2.value
-	studentArray.push( sno2.value )
-	console.log('배열저장 : ' + studentArray )
-	let sIndex2 = studentArray.indexOf( snoValue2 );
-	studentArray.splice( sIndex2 , 1);
-	console.log('배열제거 : ' + studentArray )
-
+	let sIndex2 = studentArray.indexOf( snoValue2 );	
 	
+	if(sIndex2 == 0 ){
+		document.querySelector('.resultBox2').innerHTML = '이미 등록된 학번입니다.'}
+	else if(sIndex2 !== 0 ){
+		studentArray.push(snoValue2); 
+		document.querySelector('.resultBox2').innerHTML = '등록되었습니다.'}
 	
-	if(snoValue2 == '20230110' || snoValue2 == '20230109' || snoValue2 ==  '20230108' ){
-		document.querySelector('.resultBox2').innerHTML = '실패'}
-	else{
-		document.querySelector('.resultBox2').innerHTML = '성공'}
+	console.log(studentArray)
 }
 
 
