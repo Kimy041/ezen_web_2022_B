@@ -83,7 +83,6 @@ function save(){
 	studentArray.push( sno2.value )
 	console.log('배열저장 : ' + studentArray )
 	let sIndex2 = studentArray.indexOf( snoValue2 );
-	console.log('6번체크 : ' + sIndex2 )
 	studentArray.splice( sIndex2 , 1);
 	console.log('배열제거 : ' + studentArray )
 
@@ -92,8 +91,7 @@ function save(){
 	if(snoValue2 == '20230110' || snoValue2 == '20230109' || snoValue2 ==  '20230108' ){
 		document.querySelector('.resultBox2').innerHTML = '실패'}
 	else{
-		document.querySelector('.resultBox2').innerHTML = '성공'
-		}
+		document.querySelector('.resultBox2').innerHTML = '성공'}
 }
 
 
