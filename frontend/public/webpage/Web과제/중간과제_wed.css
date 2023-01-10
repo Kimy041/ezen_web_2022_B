@@ -19,7 +19,7 @@ a{ color: black; text-decoration: none;}
 #h_bottom{
 	position: relative;
 }
-#h_bottom #headlogo{ /* 로고 */
+#headlogo{ /* 로고 */
 	position: absolute;
 	top: 27px;
 	left: 25px;
@@ -28,7 +28,7 @@ a{ color: black; text-decoration: none;}
 	position: absolute;
 	top: 0px; left: 240px;
 }
-#headmenu .h_maenu{
+.h_maenu{
 	position: relative;
 	display: inline-block;
 	padding: 0px 10px;
@@ -48,7 +48,7 @@ a{ color: black; text-decoration: none;}
 .search{ border: none; }
 /*---------------------------*/
 .dep{ position: relative;}
-.dep1{position: absolute; right: 10px; display: none; z-index: 1;}
+.dep1{position: absolute; right: 10px; /* display: none; */ z-index: 1;}
 .dep:hover .dep1{display: block;}
 
 /* ------------------------------------- */
