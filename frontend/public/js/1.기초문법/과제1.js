@@ -87,6 +87,7 @@ function save(){
 		document.querySelector('.resultBox2').innerHTML = '등록되었습니다.'}
 	
 	console.log(studentArray)
+	
 }
 
 
