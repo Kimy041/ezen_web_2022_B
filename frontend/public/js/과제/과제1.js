@@ -80,9 +80,9 @@ function save(){
 	let snoValue2 = sno2.value
 	let sIndex2 = studentArray.indexOf( snoValue2 );	
 	
-	if(sIndex2 == 0 ){
+	if(sIndex2 !== -1 ){
 		document.querySelector('.resultBox2').innerHTML = '이미 등록된 학번입니다.'}
-	else if(sIndex2 !== 0 ){
+	else if(sIndex2 == -1 ){
 		studentArray.push(snoValue2); 
 		document.querySelector('.resultBox2').innerHTML = '등록되었습니다.'}
 	
