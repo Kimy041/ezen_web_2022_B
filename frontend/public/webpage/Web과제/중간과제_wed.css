@@ -35,18 +35,18 @@ a{ color: black; text-decoration: none;}
 	line-height: 78px;
 	font-size: 12px;
 }
-.topright{
+.search_input{
 	border-bottom: 1px solid black;
 	position: absolute;
 	top: 25px;
 	right: 30px;
 }
-.topright input{
+.search_input input{
 	border: none;
 	padding: 10px 0px;
 }
-.lockimg img{ width: 30px;}
-.search{ border: none; }
+.search img{ width: 30px;}
+.input_search{ border: none; }
 /*---------------------------*/
 #dep{ position: relative;}
 #dep1{
