@@ -67,9 +67,7 @@ function onLogin(){ //함수[Loginup] 시작 점
 		//alert('로그인성공');
 		document.querySelector('.resultBox').innerHTML = '로그인성공!'
 	}
-		
-if(sIndex -1){console.log('로그인 성공');}
-else{console.log('로그인 실패');}
+	
 }//함수[Loginup] 끝점
 
 
@@ -84,19 +82,34 @@ function save(){
 		document.querySelector('.resultBox2').innerHTML = '이미 등록된 학번입니다.'}
 	else if(sIndex2 == -1 && snoValue2.length == 8){
 		studentArray.push(snoValue2); 
+		sno2.valeu = '';
 		document.querySelector('.resultBox2').innerHTML = '등록되었습니다.'}
-	else if(snoValue2.length !== 8 && snoValue2 !== '' ){
+	else if(snoValue2.length != 8 && snoValue2 != '' ){
 		document.querySelector('.resultBox2').innerHTML = '8자리로 입력해주세요'}
-	else if(snoValue2.length !== 8 && snoValue2 == ''  ){
+	else if(snoValue2.length != 8 && snoValue2 == '' ){
 		document.querySelector('.resultBox2').innerHTML = '학번을 입력해주세요~'}
 	
-	console.log(studentArray)
-	
+	console.log(studentArray)	
 }
 
-
-
-
+//3. 요휴성검사[ 중복체크 ]
+	//입력받은 값[snoValue2]이 있고 기존에 있는 값들[studentArray]과 비교
+	// 경우의수 2가지[중복이 있다 or 없다]
+/*	let resultBox2 = document.querySelector('.resultBox2')
+	
+	 if(studentArray.indexOf( snoValue2 ) == -1 ){ //중복 없다
+		console.log('학번 등록했습니다.')
+		studentArray.push(snoValue2)
+		
+			console.log( resultBox2 )
+			resultBox2.innerHTML = '학번 등록되었습니다.'
+	}
+		else{//중복 있다.
+		console.log('이미 등록된 학번입니다.')
+			resultBox2.innerHTML = '이미 존재하는 학번입니다.'
+		
+	}//else end
+*/
 
 
 
