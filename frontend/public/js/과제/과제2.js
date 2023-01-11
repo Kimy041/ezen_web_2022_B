@@ -1,7 +1,7 @@
 // 테이블의 첫행[제목] html 마크업 대입된 변수 
 // let html변수명 = 'HTML마크업작성'		//! : 마크업 문자처리
 
-let 테이블행 = '<tr> <th>단</th> <th>곱</th> <th>결과</th> </tr>';	// 1번 실행 [ 결과 누적O ]
+//let 테이블행 = '<tr> <th>단</th> <th>곱</th> <th>결과</th> </tr>';	// 1번 실행 [ 결과 누적O ]
 
 
 function onResult(){
