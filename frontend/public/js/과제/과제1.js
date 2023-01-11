@@ -82,9 +82,13 @@ function save(){
 	
 	if(sIndex2 !== -1 ){
 		document.querySelector('.resultBox2').innerHTML = '이미 등록된 학번입니다.'}
-	else if(sIndex2 == -1 ){
+	else if(sIndex2 == -1 && snoValue2.length == 8){
 		studentArray.push(snoValue2); 
 		document.querySelector('.resultBox2').innerHTML = '등록되었습니다.'}
+	else if(snoValue2.length !== 8 && snoValue2 !== '' ){
+		document.querySelector('.resultBox2').innerHTML = '8자리로 입력해주세요'}
+	else if(snoValue2.length !== 8 && snoValue2 == ''  ){
+		document.querySelector('.resultBox2').innerHTML = '학번을 입력해주세요~'}
 	
 	console.log(studentArray)
 	
