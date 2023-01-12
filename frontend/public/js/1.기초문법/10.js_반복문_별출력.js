@@ -258,3 +258,14 @@ for( let i = 1 ; i <= line6 ; i++ ){// for s
 }//for e
 console.log( output )
 
+/* 줄예시 7			
+*          *		
+  *      *			
+    *  *			
+      *				
+    *  *			
+  *      *			
+*          *		
+
+*/
+
