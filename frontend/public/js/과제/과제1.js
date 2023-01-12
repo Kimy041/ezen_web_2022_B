@@ -84,11 +84,10 @@ function save(){
 		studentArray.push(snoValue2); 
 		sno2.value = '';
 		document.querySelector('.resultBox2').innerHTML = '등록되었습니다.'}
-	else if(snoValue2.length != 8 && snoValue2 != '' ){
-		document.querySelector('.resultBox2').innerHTML = '8자리로 입력해주세요'}
-	else if(snoValue2.length != 8 && snoValue2 == '' ){
-		document.querySelector('.resultBox2').innerHTML = '학번을 입력해주세요~'}
-	
+	else{ if(snoValue2.length != 8 && snoValue2 != '' ){
+			document.querySelector('.resultBox2').innerHTML = '8자리로 입력해주세요'}
+			else{document.querySelector('.resultBox2').innerHTML = '학번을 입력해주세요~'}
+		}
 	console.log(studentArray)	
 }
 
