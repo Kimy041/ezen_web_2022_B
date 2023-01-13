@@ -15,3 +15,22 @@ function addContent(){
 	document.querySelector('.content_table').innerHTML = 테이블행
 	document.querySelector('.text').value = ''
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
