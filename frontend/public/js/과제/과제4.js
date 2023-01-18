@@ -24,7 +24,7 @@ function 관리자페이지출력(){ // f s
 		html += `<tr>
 					<td>${i+1}</td>
 					<td>${도서목록[i]}</td>
-					<td>${도서대여여부( i )}</td>
+					<td>${대여목록.includes( 도서목록[i] ) ? '대여중' : '대여가능' }</td>
 					<td>
 						<button onclick="bookDelete(${i})">삭제</button>
 					</td>
@@ -33,7 +33,7 @@ function 관리자페이지출력(){ // f s
 	document.querySelector('.managerTable').innerHTML = html
 	
 	고객페이지출력()
-	도서대여여부()
+	
 }// f e
 
 // 삭제 버튼을 클릭했을때 함수
