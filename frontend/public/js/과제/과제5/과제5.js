@@ -209,7 +209,8 @@ function Dbtn( D ){
 function Rbtn( R ){
 	let newprice = Number(prompt('수정할 금액을 입력해주세요')) 
 	if( isNaN(newprice)){ alert('숫자형식으로 입력해주세요'); }
-	else{ burgerList[R].price = newprice  }
+	else{ burgerList[R].price = newprice 
+			alert('수정되었습니다.') }
 	burgerlist_print();
 	catagory_select( 0 );
 }
@@ -227,7 +228,7 @@ function orderlist_print(){
 						<td>${orderList[i].no}</td>
 						<td>${orderList[i].items[j].name}</td>
 						<td>${orderList[i].state = true ? '주문요청' : '주문완료' }</td>
-						<td>${orderList[i].time.getFullYear() +'-'+orderList[i].time.getMonth()+1	  }</td>
+						<td>${orderList[i].time.getFullYear() +'-'+(orderList[i].time.getMonth()+1)+'-'+orderList[i].time.getDate()	  }</td>
 						<td>
 							<button onclick="Ebtn(${i})" type="button">주문완료</button>
 						</td>
@@ -236,7 +237,12 @@ function orderlist_print(){
 	}
 	document.querySelector('.orderlistTable').innerHTML = html
 }
-
+//3-1. 버튼 클릭시 주문요청->주문완료 변경
+function Ebtn(i){
+	alert('주문이 완료되었습니다.')
+	orderList[i].state = false
+	orderlist_print();
+}
 
 
 
