@@ -171,7 +171,7 @@ burgeraddBtn.addEventListener( 'click' , ()=> {
 	let check = true;
 		// 1. 카테고리 체크
 	if( !categoryList.includes( burger.category ) ){
-		alert('등록이 불가한 카테고리입니다.'); check = false;
+		alert('등록이 불가능한 카테고리입니다.'); check = false;
 		}
 		// 2. 가격 숫자 체크
 	if( isNaN(burger.price)){ alert('숫자형식으로 입력해주세요'); check =false; }
@@ -224,23 +224,35 @@ function orderlist_print(){
 	for(let i = 0 ; i < orderList.length ; i++ ){
 		for( let j = 0 ; j< orderList[i].items.length ; j++){
 			console.log( orderList[i].items[j] )
+			
+			let date = orderList[i].time.getFullYear()+'년'+
+						orderList[i].time.getMonth()+1 +'월'+
+						orderList[i].time.getDate()+'일'+
+						orderList[i].time.getHours()+':'+
+						orderList[i].time.getMinutes()+':'+
+						orderList[i].time.getSeconds()
+			
 			html += `<tr>
 						<td>${orderList[i].no}</td>
 						<td>${orderList[i].items[j].name}</td>
-						<td>${orderList[i].state = true ? '주문요청' : '주문완료' }</td>
-						<td>${orderList[i].time.getFullYear() +'-'+(orderList[i].time.getMonth()+1)+'-'+orderList[i].time.getDate()	  }</td>
+						<td>${orderList[i].state == true ? '주문요청' : '주문완료' }</td>
+						<td>${orderList[i].complete = date }</td>
 						<td>
-							<button onclick="Ebtn(${i})" type="button">주문완료</button>
+							<button class="Hbtn" onclick="Ebtn(${i})" type="button">주문완료</button>
 						</td>
 					</tr>`
 		}
+		console.log( orderList )
 	}
 	document.querySelector('.orderlistTable').innerHTML = html
+	
 }
 //3-1. 버튼 클릭시 주문요청->주문완료 변경
 function Ebtn(i){
 	alert('주문이 완료되었습니다.')
-	orderList[i].state = false
+	orderList[i].state = false ;
+	
+	console.log( orderList )
 	orderlist_print();
 }
 
