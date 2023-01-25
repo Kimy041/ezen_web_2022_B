@@ -24,13 +24,16 @@
 	font-size: 40px;
 	text-decoration: none;
 }
+
 /* 하단 메뉴 top 위치 변경 */
 .h_bottom{
 	top: 40px !important; /* 부트스트랩보다 우선순위 */
 }
+#navContent{ background-color: #D63A39; padding: 0px 20px; color: white !important;}
+.h_bottommenu .nav-link{ color: white !important;}
 /* 부트스트랩 class 수정*/
 .nav-link{ color: black !important;}
 /* 상단 메뉴 : 오른쪽 배치 */
 .h_topmenu{ width: 100%; display: flex; justify-content: flex-end; font-size: 9px;}
 /* 하단 메뉴 : 가로 수평정렬 */
-.h_bottommenu{ width: 100%; display: flex; justify-content: space-between; font-size: 12px;}
+.h_bottommenu{ width: 100%; display: flex; justify-content: space-between; font-size: 12px; color: white;}
