@@ -129,9 +129,10 @@ function order(){
 		// 2. order 객체 배열에 저장
 		orderList.push( order ); console.log( orderList );
 	// 2. 주문완료 후
-	cartList.splice(0) // 전역변수내 초기화 // 그전에 안에 들어있는 데이터를 다른곳으로 옮기자 --> 2번 주석
-	cart_print()
-	orderlist_print()
+	cartList.splice(0); // 전역변수내 초기화 // 그전에 안에 들어있는 데이터를 다른곳으로 옮기자 --> 2번 주석
+	cart_print();
+	orderlist_print();
+	
 }
 // 7. 카트내 버거 출력 [ 1.제품 클릭할때마다 , 2.취소/주문 ]
 function cart_print(){
@@ -179,7 +180,7 @@ burgeraddBtn.addEventListener( 'click' , ()=> {
 	// 3. 저장
 	if( check ){ burgerList.push( burger ); alert('버거가 등록되었습니다.')}
 	
-	console.log( burgerList ); burgerlist_print();
+	console.log( burgerList ); burgerlist_print(); catagory_select( 0 ); sales_print();
 })
 // 2. 등록된 버거 현황 출력
 function burgerlist_print(){
@@ -202,6 +203,7 @@ function burgerlist_print(){
 // 2-1. 삭제 함수
 function Dbtn( D ){
 	burgerList.splice( D , 1 );
+	alert('버거가 삭제되었습니다.')
 	burgerlist_print();
 	catagory_select( 0 );
 }
@@ -210,7 +212,7 @@ function Rbtn( R ){
 	let newprice = Number(prompt('수정할 금액을 입력해주세요')) 
 	if( isNaN(newprice)){ alert('숫자형식으로 입력해주세요'); }
 	else{ burgerList[R].price = newprice 
-			alert('수정되었습니다.') }
+			alert('금액이 수정되었습니다.') }
 	burgerlist_print();
 	catagory_select( 0 );
 }
@@ -225,20 +227,26 @@ function orderlist_print(){
 		for( let j = 0 ; j< orderList[i].items.length ; j++){
 			console.log( orderList[i].items[j] )
 			
-			let date = orderList[i].time.getFullYear()+'년'+
-						orderList[i].time.getMonth()+1 +'월'+
+			let date = orderList[i].time.getMonth()+1 +'월'+
 						orderList[i].time.getDate()+'일'+
 						orderList[i].time.getHours()+':'+
 						orderList[i].time.getMinutes()+':'+
 						orderList[i].time.getSeconds()
+			if( orderList[i].state== false){
+				date += '/'+ orderList[i].complete.getMonth()+1 +'월'+
+							orderList[i].complete.getDate()+'일'+
+							orderList[i].complete.getHours()+':'+
+							orderList[i].complete.getMinutes()+':'+
+							orderList[i].complete.getSeconds()
+			}
 			
 			html += `<tr>
 						<td>${orderList[i].no}</td>
 						<td>${orderList[i].items[j].name}</td>
-						<td>${orderList[i].state == true ? '주문요청' : '주문완료' }</td>
-						<td>${orderList[i].complete = date }</td>
+						<td>${orderList[i].state ? '주문요청' : '주문완료' }</td>
+						<td>${ date }</td>
 						<td>
-							<button class="Hbtn" onclick="Ebtn(${i})" type="button">주문완료</button>
+							${ orderList[i].state ? '<button onclick="Ebtn('+i+')" type="button">주문완료</button>' : '' }
 						</td>
 					</tr>`
 		}
@@ -251,15 +259,54 @@ function orderlist_print(){
 function Ebtn(i){
 	alert('주문이 완료되었습니다.')
 	orderList[i].state = false ;
-	
+	orderList[i].complete = new Date();
 	console.log( orderList )
 	orderlist_print();
+	sales_print();
 }
-
-
-
-
-
+sales_print();
+// 4. 매출 현황 출력
+function sales_print(){
+	let html = `<tr>
+					<th>제품번호</th><th>버거 이름</th>
+					<th>판매수량</th><th>매출액</th><th>순위</th>
+				</tr>`
+	burgerList.forEach( ( burger , i ) => { // *현재 등록된 모든 버거 반복중
+		html += `<tr>
+					<th>${ i+1 }</th><th>${ burger.name }</th>
+					<th>${ sales_count( i ) }</th><th>${ ( sales_count( i )* burger.price ).toLocaleString() }</th>
+					<th>${ sales_rank( i ) }</th>
+				</tr>`
+	})				
+	document.querySelector('.salesTable').innerHTML = html
+}
+// 4-1 판매수량
+function sales_count( index ){ console.log(index +'번째 버거');
+	let count = 0; // 1. i번째 제품의 누적 판매량수 저장하는 변수
+	// 2. 주문목록에서 i번째 제품 찾기
+	orderList.forEach( ( order , i ) => {	// 주문목록 반복문
+		order.items.forEach( ( burger , j ) => {	// 주문마다 버거리스트 반복문
+			console.log( burger );
+			// 만약에 주문목록내 버거리스트 중에서 버거이름과 index번째 버거 이름과 같으면
+			if( burger.name == burgerList[index].name ){ count++; }
+		})
+	})
+	return count; // * i번째 제품의 누적 판매량수 변수 반환
+}
+// 4-2 순위
+function sales_rank( index ){ console.log(index +'번째 버거 순위');
+	let rank = 1; // 1. index 번째 버거의 순위 저장하는 변수 [ 기본값 1등 ]
+	// 2. index 번째 버거의 순위를 구하기
+		// 1. index 번째 버거의 매출액 // 매출액 : 수량 * 금액
+	let total = sales_count(index)*burgerList[index].price ;
+		// 2. 모든 버거들 마다의 매출액
+	burgerList.forEach( ( burger , i ) => {
+		let total2 = sales_count(i)*burger.price ;
+		// 3. 비교 [ 만약에 index번째 버거의 매출액보다 현재 반복되는 버거의 i번째 버거의 매출액보다 작으면 ]
+		if( total < total2 ){ rank++; }
+	})
+	return rank; // * index 번째 버거의 순위 반환
+}
 
 
 
