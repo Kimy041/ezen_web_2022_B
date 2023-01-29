@@ -5,10 +5,10 @@ let monbox = document.querySelector('.monbox');
 let logbox2 = document.querySelector('.logbox2');
 let userHP = document.querySelector('.userHP');
 let monHP = document.querySelector('.monHP');
-let monster = [
-	{ img : '주황버섯.gif' , hp : 100 , left : 910 , exp : 50 } ,
-	{ img : '스펙터 주황버섯.gif' , hp : 200 , left : 910 , exp : 150 } ,
-	{ img : '변형된 주황버섯.gif' , hp : 300 , left : 910 , exp : 300 }
+let monster = [ 
+	{ img : '주황버섯.gif' , hp : 100 , left : 910 , exp : 50 } , 
+	{ img : '스펙터주황버섯.gif' , hp : 200 , left : 910 , exp : 150 } , 
+	{ img : '변형된주황버섯.gif' , hp : 300 , left : 910 , exp : 300 }
 ]
 
 // *userbox [기본/처음] 위치
@@ -17,7 +17,9 @@ let m_left = 910;
 let mH_width = 100;
 let uH_width = 100;
 // 몬스터
-
+monbox.style.backgroundImage = `url(img/${monster[0].img})`
+monHP.style.width = monster[0].hp
+console.log(monster[0+1].hp)
 
 // 2.  문서 안에서 키 입력 이벤트
 document.addEventListener('keydown' , (e)=>{
@@ -30,20 +32,21 @@ document.addEventListener('keydown' , (e)=>{
 		u_left = u_left > 910 ? 910 : u_left ;
 		userbox.style.backgroundImage = `url(img/캐릭터2_이동.png)` // 이동 모션 
 		userbox.style.backgroundSize = `110%`;
-	}else if( key == 65){ // a키 -> 공격 
+	}else if( key == 65 ){ // a키 -> 공격 
 		userbox.style.backgroundImage = `url(img/캐릭터2_이동.png)` // 공격 모션
 		for(let i = 0 ; i<monster.length ; i++){
 			// 공격
 			let attack = monster[i].left - u_left 
-			if( monster[i].hp >= 0 && attack <= 50 && attack >= -10 ){	
+			if( monster[i].hp > 0 && attack <= 50 && attack >= -10 ){	
 				monster[i].hp -= 20
 				monHP.style.width = `${monster[i].hp}px`}
-			if( monster[i].hp <= 0 ){
-				monbox.style.backgroundImage = `url(img/${ monster[i+1].img })`
-				console.log(monster[i+1].img)
-				monHP.style.width = `${monster[i+1].hp}px`
+			if( monster[i].hp = 0 ){
+				let N = i+1
+				monbox.style.backgroundImage = `url(img/${monster[N].img})`
+				monHP.style.width = monster[N].hp
+				console.log(monster[N].hp)
 			}
-
+			
 		}
 	}
 	
@@ -73,11 +76,10 @@ function mon_moving(){
 		if( monster[i].left > 910 )monster[i].left = 910;
 		// 공격
 		let attack = monster[i].left - u_left 
-		
 		if( attack <= 20 && attack >= -10 )
-		uH_width -= 10
-		userHP.style.width = `${uH_width}px`
-		if( uH_width < 0){ alert('game over');
+		{uH_width -= 10
+		userHP.style.width = `${uH_width}px`}
+		if( uH_width <= 0){ alert('game over');
 		 uH_width = 100
 		} 
 		// 3. 몬스터 이동
