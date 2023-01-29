@@ -14,11 +14,11 @@ let monster = [
 // *userbox [기본/처음] 위치
 let u_left = 10;
 let m_left = 910;
-let mH_width = 100;
+let mH_width = monster[0].hp
 let uH_width = 100;
 // 몬스터
 monbox.style.backgroundImage = `url(img/${monster[0].img})`
-monHP.style.width = monster[0].hp
+
 console.log(monster[0+1].hp)
 
 // 2.  문서 안에서 키 입력 이벤트
@@ -33,21 +33,32 @@ document.addEventListener('keydown' , (e)=>{
 		userbox.style.backgroundImage = `url(img/캐릭터2_이동.png)` // 이동 모션 
 		userbox.style.backgroundSize = `110%`;
 	}else if( key == 65 ){ // a키 -> 공격 
-		userbox.style.backgroundImage = `url(img/캐릭터2_이동.png)` // 공격 모션
-		for(let i = 0 ; i<monster.length ; i++){
+			userbox.style.backgroundImage = `url(img/캐릭터2_이동.png)` // 공격 모션
 			// 공격
-			let attack = monster[i].left - u_left 
-			if( monster[i].hp > 0 && attack <= 50 && attack >= -10 ){	
-				monster[i].hp -= 20
-				monHP.style.width = `${monster[i].hp}px`}
-			if( monster[i].hp = 0 ){
-				let N = i+1
-				monbox.style.backgroundImage = `url(img/${monster[N].img})`
-				monHP.style.width = monster[N].hp
-				console.log(monster[N].hp)
+			let attack = monster[0].left - u_left 
+			if( monster[0] && mH_width >= 0 && attack <= 50 && attack >= -10 ){	
+				mH_width -= 20
+				monHP.style.width = `${mH_width}px`}
+			if( mH_width <= 0 ){
+				monbox.style.backgroundImage = `url(img/${monster[1].img})`
+				mH_width= monster[1].hp
+				monHP.style.width = mH_width
 			}
-			
-		}
+			attack = monster[1].left - u_left 
+			if( monster[1] && mH_width >= 0 && attack <= 50 && attack >= -10 ){	
+				mH_width -= 20
+				monHP.style.width = `${mH_width}px`}
+			if( mH_width <= 0 ){
+				monbox.style.backgroundImage = `url(img/${monster[2].img})`
+				mH_width= monster[2].hp
+				monHP.style.width = mH_width
+			}
+			attack = monster[2].left - u_left 
+			if( monster[2] && mH_width >= 0 && attack <= 50 && attack >= -10 ){	
+				mH_width -= 20
+				monHP.style.width = `${mH_width}px`
+			}
+		
 	}
 	
 	userbox.style.left = `${ u_left }px`	// * 키 입력후 css : left 변경
