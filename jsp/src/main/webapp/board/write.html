@@ -28,7 +28,7 @@
 					<li class="nav-item"> <a class="nav-link" href="#"> 장바구니 </a> </li>
 					<li class="nav-item"> <a class="nav-link" href="#"> 마이페이지 </a> </li>
 					<li class="nav-item"> <a class="nav-link" href="/jsp/board/list.html"> 커뮤니티 </a> </li>
-					<li class="nav-item"> <a class="nav-link" href="#"> 문의사항 </a> </li>
+					<li class="nav-item"> <a class="nav-link" href="/jsp/qboard/list.html"> 문의사항 </a> </li>
 					<li class="nav-item"> <a class="nav-link" href="#"> 리뷰 </a> </li>
 				</ul>
 			</div>
@@ -70,19 +70,19 @@
 	<div class="container"><!-- 반응형 구역 -->
 		<h3 class="box_title">게시글 작성</h3>
 		
-		<form> <!-- 입력양식 -->
+		<form class="writeform"> <!-- 입력양식 -->
 			<div class="row my-3"><!-- 작성자 , 비밀전호 입력 구역 -->
 				<div class="col-md-3">
-					<input class="form-control" type="text" placeholder="작성자">
+					<input class="form-control bwriter" type="text" placeholder="작성자">
 				</div>
 				<div class="col-md-3">
-					<input class="form-control" type="password" placeholder="비밀번호">
+					<input class="form-control bpassword" type="password" placeholder="비밀번호">
 				</div>
 			</div>
 			<!-- col-md-12인 경우 생략 form-control 이 width:100% -->
-			<input class="form-control my-3" type="text" placeholder="제목">
+			<input class="form-control my-3 btitle" type="text" placeholder="제목">
 			<!-- 1. 기본 textarea -->
-			<textarea class="form-control my-3" rows="10" cols="" placeholder="내용"></textarea>
+			<textarea class="form-control my-3 bcontent" rows="10" cols="" placeholder="내용"></textarea>
 			<!-- 2. 썸머노트 textarea -->
 			<textarea id="summernote" class="form-control my-3" rows="10" cols="" placeholder="내용2"></textarea>
 			
@@ -94,7 +94,7 @@
 			
 			<div class="row col-md-4 offset-md-4"> <!-- 버튼 구역 -->
 				<div class="col-md-4">
-					<button class="form-control writebtn" type="submit">등록</button>
+					<button class="form-control writebtn" onclick="board_write()" type="button">등록</button>
 				</div>
 				<div class="col-md-4">
 					<button class="form-control resetbtn" type="reset">다시작성</button>
@@ -116,20 +116,19 @@
 	<!-- 썸머노트 : 한글 js -->
 	<script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
 	<!-- 사용자 정의 js -->
-	<script src="js/index.js" type="text/javascript"></script>
-	<!-- 사용자 정의 js -->
 	<script src="../js/board/write.js" type="text/javascript"></script>
 	
 </body>
 </html>
 
 <!-- 
-	부트스트랩 여백
-		m : margin
-			m-3 : 위아래오른쪽왼쪽
+	m : margin
+			m-3 : 위아래왼쪽오른쪽
 			my-3 : 위아래
-			mx-3 : 왼쪽온른쪽
+			mx-3 : 왼쪽오른쪽 
 			mt-3 : 위
 			mb-3 : 아래
-		p : padding
+			ms-3 : 왼쪽
+			me-3 : 오른쪽 
+		p : padding 
  -->

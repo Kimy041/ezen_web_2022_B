@@ -8,6 +8,10 @@
     font-style: normal;
 }
 /* 기본값 */
+a{
+	color: black !important;
+	text-decoration: none !important;
+}
 *{
 	font-family: '맑은 고딕';
 	color: black;
