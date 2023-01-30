@@ -13,13 +13,23 @@ let monster = [
 
 // *userbox [기본/처음] 위치
 let u_left = 10;
-let m_left = 910;
-let mH_width = monster[0].hp
+
 let uH_width = 100;
 // 몬스터
-monbox.style.backgroundImage = `url(img/${monster[0].img})`
 
-console.log(monster[0+1].hp)
+let mindex = 0;
+
+let m_left = 0
+let mH_width = 0
+
+몬스터교체( mindex )
+
+function 몬스터교체( i ){
+	m_left =monster[i].left
+	mH_width = monster[i].hp
+	monbox.style.backgroundImage = `url(img/${monster[i].img})`
+	monHP.style.width = `${mH_width}px`
+}
 
 // 2.  문서 안에서 키 입력 이벤트
 document.addEventListener('keydown' , (e)=>{
@@ -35,29 +45,20 @@ document.addEventListener('keydown' , (e)=>{
 	}else if( key == 65 ){ // a키 -> 공격 
 			userbox.style.backgroundImage = `url(img/캐릭터2_이동.png)` // 공격 모션
 			// 공격
-			let attack = monster[0].left - u_left 
-			if( monster[0] && mH_width >= 0 && attack <= 50 && attack >= -10 ){	
-				mH_width -= 20
-				monHP.style.width = `${mH_width}px`}
-			if( mH_width <= 0 ){
-				monbox.style.backgroundImage = `url(img/${monster[1].img})`
-				mH_width= monster[1].hp
-				monHP.style.width = mH_width
-			}
-			attack = monster[1].left - u_left 
-			if( monster[1] && mH_width >= 0 && attack <= 50 && attack >= -10 ){	
-				mH_width -= 20
-				monHP.style.width = `${mH_width}px`}
-			if( mH_width <= 0 ){
-				monbox.style.backgroundImage = `url(img/${monster[2].img})`
-				mH_width= monster[2].hp
-				monHP.style.width = mH_width
-			}
-			attack = monster[2].left - u_left 
-			if( monster[2] && mH_width >= 0 && attack <= 50 && attack >= -10 ){	
+			let attack = m_left - u_left 
+			if( attack <= 100 && attack >= -10 ){
+				alert('공격')	
 				mH_width -= 20
 				monHP.style.width = `${mH_width}px`
+				if( mH_width <= 0 ){
+					mindex++;
+					if( mindex == monster.length ){ }
+					else{ 몬스터교체( mindex  ) }
+					
+					
+				}
 			}
+			
 		
 	}
 	
@@ -76,17 +77,18 @@ document.addEventListener( 'keyup' , (e)=>{
 	// 특정 시간마다 함수 실행해주는 함수 : setInterval ( ()=>{} , 밀리초(1000/1초) )
 let S =setInterval( mon_moving , 1000 );
 function mon_moving(){
-	for(let i = 0 ; i<monster.length ; i++){
 		// 1. 난수 +-10
 		let rand = parseInt( Math.random()*100+1 ); // 1~100 // 이동거리
 		let rand2 = parseInt( Math.random()*2 ); // 0 또는 1 // 이동방향
-		if( rand2 == 1 ) monster[i].left += rand // 
-		else monster[i].left -= rand
+		if( rand2 == 1 ) m_left += rand // 
+		
+		else m_left -= rand
 		// 2. 게임 화면 고정
-		if( monster[i].left < 0 )monster[i].left = 0;
-		if( monster[i].left > 910 )monster[i].left = 910;
+		if( m_left < 0 )m_left = 0;
+		if( m_left > 910 )m_left = 910;
+		
 		// 공격
-		let attack = monster[i].left - u_left 
+		let attack = m_left - u_left 
 		if( attack <= 20 && attack >= -10 )
 		{uH_width -= 10
 		userHP.style.width = `${uH_width}px`}
@@ -94,11 +96,9 @@ function mon_moving(){
 		 uH_width = 100
 		} 
 		// 3. 몬스터 이동
-		monbox.style.left = `${ monster[i].left }px`
+		monbox.style.left = `${ m_left }px`
 		// * 현재 좌표를 로그에 출력
-		logbox2.innerHTML = `<div> 몬스터 좌표 : ${ monster[i].left } </div>`
-	
-	} 
+		logbox2.innerHTML = `<div> 몬스터 좌표 : ${ m_left } </div>`
 	
 }
 
