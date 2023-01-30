@@ -13,7 +13,6 @@ let monster = [
 
 // *userbox [기본/처음] 위치
 let u_left = 10;
-
 let uH_width = 100;
 // 몬스터
 
@@ -22,9 +21,9 @@ let mindex = 0;
 let m_left = 0
 let mH_width = 0
 
-몬스터교체( mindex )
+M_change( mindex )
 
-function 몬스터교체( i ){
+function M_change( i ){
 	m_left =monster[i].left
 	mH_width = monster[i].hp
 	monbox.style.backgroundImage = `url(img/${monster[i].img})`
@@ -47,26 +46,24 @@ document.addEventListener('keydown' , (e)=>{
 			// 공격
 			let attack = m_left - u_left 
 			if( attack <= 100 && attack >= -10 ){
-				alert('공격')	
 				mH_width -= 20
 				monHP.style.width = `${mH_width}px`
 				if( mH_width <= 0 ){
 					mindex++;
-					if( mindex == monster.length ){ }
-					else{ 몬스터교체( mindex  ) }
+					if( mindex == monster.length ){
+						 monbox.style.display = 'none'; 
+						 clearInterval(S);
+						 alert('Stage Clear') }
+					else{ M_change( mindex ) }
 					
 					
 				}
 			}
 			
-		
 	}
-	
 	userbox.style.left = `${ u_left }px`	// * 키 입력후 css : left 변경
 	// * 현재 좌표를 로그에 출력 
 	logbox.innerHTML = `<div> 캐릭터 좌표 : ${ u_left } </div>`
-	
-	
 })
 // 2. 문서 안에서 키 떼였을때 이벤트 keyup
 document.addEventListener( 'keyup' , (e)=>{ 
@@ -81,7 +78,6 @@ function mon_moving(){
 		let rand = parseInt( Math.random()*100+1 ); // 1~100 // 이동거리
 		let rand2 = parseInt( Math.random()*2 ); // 0 또는 1 // 이동방향
 		if( rand2 == 1 ) m_left += rand // 
-		
 		else m_left -= rand
 		// 2. 게임 화면 고정
 		if( m_left < 0 )m_left = 0;
@@ -123,14 +119,4 @@ function mon_moving(){
 
 
 
-
-
-
-	
-	
-	
-	
-	
-	
-	
 	
