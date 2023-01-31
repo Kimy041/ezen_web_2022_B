@@ -142,5 +142,5 @@ console.log( '일 : ' + date.getDate() );
 console.log( '요일 : ' + date.getDay() );
 
 	` 백틱
-		` 문자열 ${}
+		` 문자열 ${ js작성할수 구역 } `
 */
