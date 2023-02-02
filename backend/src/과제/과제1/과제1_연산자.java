@@ -78,8 +78,44 @@ public class 과제1_연산자 {
 		*/
 		
 		// 문제10
-		System.out.println("반지름 : "); int 반지름 = scanner.nextInt();
+		/*
+		System.out.println("반지름 : "); double 반지름 = scanner.nextDouble();
 		double 원넓이 = 반지름 * 반지름 * ( 3.14 );
 		System.out.println("원 넓이 : "+ 원넓이 );
+		*/
+		
+		// 문제11
+		/*
+		System.out.println("실수1 : "); double 실수1 = scanner.nextDouble();
+		System.out.println("실수2 : "); double 실수2 = scanner.nextDouble();
+		System.out.println("실수2의 실수1 백분율 : "+ (실수1/실수2)*100 + "%" );
+		*/
+		
+		// 문제12
+		/*
+		System.out.println("윗변 : "); int 윗변 = scanner.nextInt();
+		System.out.println("밑변 : "); int 밑변 = scanner.nextInt();
+		System.out.println("높이 : "); int 높이 = scanner.nextInt();
+		System.out.println("사다리꼴 넓이 : "+ ((윗변*밑변)*높이)/2 );
+		*/
+		
+		// 문제13
+		/*
+		System.out.println("키 : "); int 키 = scanner.nextInt();
+		System.out.println("표준체중 : "+ (키 - 100)*0.9 );
+		*/
+		
+		// 문제14
+		/*
+		System.out.println("키 : "); int 키 = scanner.nextInt();
+		System.out.println("몸무게 : "); int 몸무게 = scanner.nextInt();
+		System.out.println("BMI : "+ 몸무게/((키 / 100) * (키 / 100)) );
+		*/
+		
+		// 문제15
+		/*
+		System.out.println("inch : "); int inch = scanner.nextInt();
+		System.out.println( inch*2.54 + "cm" );
+		*/
 	}
 }
