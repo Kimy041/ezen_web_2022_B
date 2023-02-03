@@ -125,7 +125,7 @@ public class 과제1_연산자 {
 		double 중간반영 = 중간고사*0.3;
 		double 기말반영 = 기말고사*0.3;
 		double 수행반영 = 수행평가*0.4;
-		System.out.printf( "점수 : %.2f "+ (중간반영 + 기말반영 + 수행반영) );
+		System.out.printf( "점수 : %3.2f "+ (중간반영 + 기말반영 + 수행반영) );
 		
 		
 		
