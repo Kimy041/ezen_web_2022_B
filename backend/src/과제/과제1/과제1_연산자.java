@@ -117,5 +117,11 @@ public class 과제1_연산자 {
 		System.out.println("inch : "); int inch = scanner.nextInt();
 		System.out.println( inch*2.54 + "cm" );
 		*/
+		
+		// 문제16
+		System.out.println("중간고사 : "); int 중간고사 = scanner.nextInt();
+		System.out.println("기말고사 : "); int 기말고사 = scanner.nextInt();
+		System.out.println("수향평가 : "); int 수행평가 = scanner.nextInt();
+		
 	}
 }
