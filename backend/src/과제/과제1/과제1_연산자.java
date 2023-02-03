@@ -122,6 +122,20 @@ public class 과제1_연산자 {
 		System.out.println("중간고사 : "); int 중간고사 = scanner.nextInt();
 		System.out.println("기말고사 : "); int 기말고사 = scanner.nextInt();
 		System.out.println("수향평가 : "); int 수행평가 = scanner.nextInt();
+		double 중간반영 = 중간고사*0.3;
+		double 기말반영 = 기말고사*0.3;
+		double 수행반영 = 수행평가*0.4;
+		System.out.printf( "점수 : %.2f "+ (중간반영 + 기말반영 + 수행반영) );
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	}
 }
