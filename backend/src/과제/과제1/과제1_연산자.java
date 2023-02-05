@@ -119,23 +119,65 @@ public class 과제1_연산자 {
 		*/
 		
 		// 문제16
+		/*
 		System.out.println("중간고사 : "); int 중간고사 = scanner.nextInt();
 		System.out.println("기말고사 : "); int 기말고사 = scanner.nextInt();
 		System.out.println("수향평가 : "); int 수행평가 = scanner.nextInt();
 		double 중간반영 = 중간고사*0.3;
 		double 기말반영 = 기말고사*0.3;
 		double 수행반영 = 수행평가*0.4;
-		System.out.printf( "점수 : %3.2f "+ (중간반영 + 기말반영 + 수행반영) );
+		System.out.printf( "점수 : %.2f", (중간반영 + 기말반영 + 수행반영) );
+		*/
 		
+		// 문제17
+		/*
+		int x = 10;
+		int y = x-- + 5 + --x; // = 10 + 5 + 8
+		System.out.printf(" x의 값 : %d , y의값 :  %d ", x, y);
+		*/
 		
+		// 문제18
+		/*
+		System.out.println("나이 : "); int 나이 = scanner.nextInt();
+		String 결과 = (나이<=19 && 나이>=10) ? "학생" : (나이<=39 && 나이>=20) ? "성인" : (나이>=40) ? "중년" : "어린이" ;
+		System.out.println(결과);
+		*/
 		
+		// 문제19
+		/*
+		System.out.println("국어 : "); int 국어 = scanner.nextInt();
+		System.out.println("수학 : "); int 수학 = scanner.nextInt();
+		System.out.println("영어 : "); int 영어 = scanner.nextInt();
+		double 평균 = (국어+수학+영어)/3;
+		System.out.printf(" 총점 : %d , 평균 :  %.2f  ", (국어+수학+영어), 평균 );
+		*/
 		
+		// 문제20
+		/*
+		System.out.println("아이디 : "); String 아이디 = scanner.next(); 
+		System.out.println("비밀번호 : "); String 비밀번호 = scanner.next();
+		String 결과 = ( 아이디.equals("admin") && 비밀번호.equals("1234") ) ? "로그인 성공" : "로그인 실패";
+		System.out.println( 결과 );
+		*/
 		
+		// 문제21
+		/*
+		System.out.println("정수7 : "); int 정수7 = scanner.nextInt();
+		System.out.println("정수8 : "); int 정수8 = scanner.nextInt();
+		System.out.println("정수9 : "); int 정수9 = scanner.nextInt();
+		int max = 정수7;
+		max = max < 정수8 ? 정수8 : max; 
+		max = max < 정수9 ? 정수9 : max;
+		System.out.printf( " 가장 큰 수는 : " + max);
+		*/
 		
-		
-		
-		
-		
+		// 문제22
+		System.out.println("플레이어1 : (가위 = '0' / 바위 = '1' / 보 = '2') "); int 플레이어1 = scanner.nextInt();
+		System.out.println("플레이어2 : (가위 = '0' / 바위 = '1' / 보 = '2') "); int 플레이어2 = scanner.nextInt();
+		String 결과 = (플레이어1 == 플레이어2 ) ? "무승부" : 
+					 (플레이어1 == 2 && 플레이어2 == 1 ) ? "플레이어1 승리" : 
+					 (플레이어1 == 1 && 플레이어2 == 0 ) ? "플레이어1 승리" : "플레이어2 승리" ;
+		System.out.printf( 결과 );
 		
 	}
 }
