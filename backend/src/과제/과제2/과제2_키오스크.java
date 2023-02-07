@@ -58,38 +58,36 @@ public class 과제2_키오스크 { // class s
 			else if( ch == 4 ) {
 				if( 콜라바구니 > 0 || 사이다바구니 > 0 || 환타바구니 > 0) {
 					System.out.println("--------------------------");
-					System.out.println("제품명   수량  가격 ");
-					if(콜라바구니 > 0) { System.out.printf("콜라  %5d %5d \n", 콜라바구니, (콜라바구니*콜라가격)); }
-					if(사이다바구니 > 0) { System.out.printf("사이다 %5d %5d \n", 사이다바구니, (사이다바구니*사이다가격)); }
-					if(환타바구니 > 0) { System.out.printf("환타  %5d %5d \n", 환타바구니 , (환타바구니*환타가격)); }
+					System.out.println("제품명\t수량\t가격 ");
+					if(콜라바구니 > 0) { System.out.printf("콜라\t%d\t%d\n", 콜라바구니, (콜라바구니*콜라가격)); }
+					if(사이다바구니 > 0) { System.out.printf("사이다\t%d\t%d\n", 사이다바구니, (사이다바구니*사이다가격)); }
+					if(환타바구니 > 0) { System.out.printf("환타\t%d\t%d\n", 환타바구니 , (환타바구니*환타가격)); }
 					System.out.println("총가격 : " + ((콜라바구니*콜라가격) + (사이다바구니*사이다가격) + (환타바구니*환타가격)) );
 					System.out.println("--------------------------");
 					
 					System.out.println("결제를 진행하시겠습니까?\n 1.결재	2.취소");
 					int ch1 = scanner.nextInt();
 					if( ch1 == 1 ) {
-						System.out.println("금액을 입력해주세요.");
-						int money = scanner.nextInt();
+						System.out.println("금액을 입력해주세요."); int money = scanner.nextInt();
 						
 						if( ((콜라바구니*콜라가격) + (사이다바구니*사이다가격) + (환타바구니*환타가격)) <= money ) {
 							System.out.println("결제되었습니다.");
 							System.out.println("잔액 : "+ ( money - ((콜라바구니*콜라가격) + (사이다바구니*사이다가격) + (환타바구니*환타가격))) );
-							콜라바구니 = 0; 사이다바구니 = 0; 환타바구니 = 0;
 						}else {
-							System.out.println("금액이 부족하여 취소되었습니다.");
+							System.err.println("금액이 부족하여 취소되었습니다.");
 							콜라 += 콜라바구니; 사이다 += 사이다바구니; 환타 += 환타바구니;
-							콜라바구니 = 0; 사이다바구니 = 0; 환타바구니 = 0;
 						}
+						콜라바구니 = 0; 사이다바구니 = 0; 환타바구니 = 0;
 						
 					}else if ( ch1 == 2 ) {
-						System.out.println("취소되었습니다.");
+						System.err.println("취소되었습니다.");
 						콜라바구니 = 0; 사이다바구니 = 0; 환타바구니 = 0;
 						콜라 += 콜라바구니; 사이다 += 사이다바구니; 환타 += 환타바구니;
 						
 					}else { System.err.println("알 수 없는 번호입니다.");}
 					
 				}else {
-					System.out.println("결제 금액이 없습니다.");
+					System.err.println("결제 금액이 없습니다.");
 				}
 			
 			}else {
@@ -101,3 +99,10 @@ public class 과제2_키오스크 { // class s
 		
 	} // main e
 } // class e
+
+
+/*
+	*중요
+		1. 변수/메모리 선택
+		2. if 제어문 중첩[ 흐름 제어 ]
+*/
