@@ -42,7 +42,7 @@ public class Ex6_비회원게시판 { // class s
 			FileInputStream fin = new FileInputStream("c:/java/board.txt");
 			// *읽어온 바이트를 저장하기 위해 바이트배열 100바이트 미리 생성
 			byte[] inbytes = new byte[1000]; // 영문 1바이트, 한글 3바이트
-			// *.read( ) 메소드를 이용한 파일 읽기 [ * 읽은 바이트응 바이트배열 저장 ]
+			// *.read( ) 메소드를 이용한 파일 읽기 [ * 읽은 바이트를 바이트배열 저장 ]
 				// inbytes : 읽어온 바이트를 배열에 저장
 				// bytecount : 읽어온 바이트의 개수를 변수에 저장
 			int bytecount = fin.read( inbytes );		// 스트림 : 바이트단위 
@@ -62,7 +62,7 @@ public class Ex6_비회원게시판 { // class s
 				// * 게시물 마다 열 자르기
 				String[] cols = boards[i].split(","); // 4조각
 				String title = cols[0];		String content = cols[1];
-				String writer = cols[2];		String password = cols[3];
+				String writer = cols[2];	String password = cols[3];
 				System.out.printf("%2d %10s%5s\n" , i , title , writer);
 			}
 			System.out.println("-----------------------------------------");
