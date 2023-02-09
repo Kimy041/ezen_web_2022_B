@@ -7,6 +7,8 @@ public class 실행 { // class s
 	public static void main(String[] args) { // main s
 		Scanner scanner = new Scanner(System.in);
 		ArrayList<Book> bookList = new ArrayList<>();
+		ArrayList<Member> memberList = new ArrayList<>();
+		
 		
 		while(true) { // while s [ 종료조건 : 없음 ]
 			System.out.println("--------------- 이젠 도서관 ---------------");
@@ -44,6 +46,7 @@ public class 실행 { // class s
 			else {
 				System.out.println("[알림] 알수 없는 행동 입니다.");
 			}
+		
 		} // while e
 		
 	} // main e
