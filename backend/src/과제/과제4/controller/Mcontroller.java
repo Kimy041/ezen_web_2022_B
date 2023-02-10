@@ -20,9 +20,49 @@ public class Mcontroller {
 		return 0; // 회원가입 성공 0
 	}
 	// 2. 로그인 로직
+	public int login( String id , String pwd ) {
+		for( int i = 0 ; i<memberDb.size(); i++ ) {
+			if( memberDb.get(i).id.equals(id) ) {
+				if( memberDb.get(i).pwd.equals(pwd)) {
+					return i; //회원 번호[인덱스] 반환
+				}else {
+					return -1; // 비밀번호 틀림
+				}
+			}
+		}
+		return -2; // 아이디 없음
+	}
 	
 	// 3. 아이디 찾기 로직
-	
+	public String findId(String name , String phone) {
+		/*
+		 	향상된 for( 타입 반복변수명 : 리스트/배열 ) { }
+		 	for( Member m : memberDb ) {
+		 		if( m.name.equals(name) && m.phone.equals(phone) ){
+		 			return m.id; 
+		 		}
+		 	}
+		 	return null;
+		 */
+
+		for( int i = 0 ; i<memberDb.size(); i++ ) {
+			if( memberDb.get(i).name.equals(name) ) {
+				if( memberDb.get(i).phone.equals(phone)) {
+					return memberDb.get(i).id; 
+				}
+			}
+		}
+		return null;
+	}
 	// 4. 비밀번호 찾기 로직
-	
+	public String findPassword(String id , String phone) {
+		for( int i = 0 ; i<memberDb.size(); i++ ) {
+			if( memberDb.get(i).name.equals(id) ) {
+				if( memberDb.get(i).phone.equals(phone)) {
+					return memberDb.get(i).pwd; 
+				}
+			}
+		}
+		return null;
+	}
 }
