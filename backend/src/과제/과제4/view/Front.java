@@ -3,12 +3,14 @@ package 과제.과제4.view;
 
 import java.util.Scanner;
 
+import 과제.과제4.controller.Bcontroller;
 import 과제.과제4.controller.Mcontroller;
 
 public class Front {
 	
 	Scanner scanner = new Scanner(System.in);
 	Mcontroller mc = new Mcontroller();
+	Bcontroller bc = new Bcontroller();
 	
 	// 1. 메인페이지
 	public void index() {
@@ -44,9 +46,7 @@ public class Front {
 		int result = mc.login(id, pwd);
 		if( result >= 0 ) { 
 			System.out.println(" [로그인 성공] ");
-			success();
-			System.out.print("작성자 : "+ id +"\n");
-			success();
+			success(id);
 		}else if( result == -2 ) {
 			System.out.println(" [아이디 없음] ");
 		}else if(  result == -1 ) {
@@ -77,25 +77,59 @@ public class Front {
 	}
 //------------------------------------------------------------------------------//
 	// 로그인 성공 화면
-	void success() {
-		System.out.print("---------- 커뮤니티 ---------------\n");
-		System.out.print("번호\t 조회수 \t 작성자 \t 제목\n");
-		
-		System.out.print("메뉴 > 1.글쓰기 2.글보기 3.로그아웃 : ");
-		int ch = scanner.nextInt();
-		if( ch == 1 ) { write(); }
-		else if( ch == 2 ) { review(); }
-		else if( ch == 3 ) { index(); }
-		else { }
+	void success(String id) {
+		while(true) {
+			System.out.print("---------- 커뮤니티 ---------------\n");
+			System.out.print("번호\t 조회수 \t 작성자 \t 제목\n");
+			for(int i = 0 ; i<bc.boardDb.size() ; i++) { 
+				System.out.printf("%d \t %s \t %s \t %s \n" ,i , bc.boardDb.get(i).no , bc.boardDb.get(i).writer , bc.boardDb.get(i).title+"\n");
+			};
+			
+			System.out.print("메뉴 > 1.글쓰기 2.글보기 3.로그아웃 : ");
+			int ch = scanner.nextInt();
+			if( ch == 1 ) { write(id); }
+			else if( ch == 2 ) { view(id); }
+			else if( ch == 3 ) { index(); }
+			else { System.err.print("[알림] 입력하신 번호를 다시 확인해주세요."); }
+		}
 	}
-	
+
 	// 글쓰기
-	void write() {
+	void write(String id) {
 		System.out.print("---------- 글 쓰기 ---------------\n");
 		System.out.print("제목 : ");	String title = scanner.next();
 		System.out.print("내용 : ");	String content = scanner.next();
+		System.out.print("작성자 : "+ id +"\n");
+		bc.write(id ,title, content);
 		
 	}
 	// 글보기
-	void review() { }
+	void view(String id) { 
+		System.out.print("원하시는 게시물 번호를 입력해주세요.");
+		int inno = scanner.nextInt();
+		if( inno >= 0 ) {
+			bc.boardDb.get(inno).no += 1;
+			System.out.print("---------- 글 상세페이지 ------------\n");
+			System.out.print("제목 : "+bc.boardDb.get(inno).title+"\n");
+			System.out.print("작성자 : "+bc.boardDb.get(inno).writer+"\t조회수 : "+bc.boardDb.get(inno).no+"\n");
+			System.out.print("내용 : "+bc.boardDb.get(inno).content+"\n");
+			
+			System.out.print("메뉴 > 1.글삭제 2.글수정 3.뒤로가기 : ");
+			int ch = scanner.nextInt();
+			if( ch == 1 ) { wrdelete(); }
+			else if( ch == 2 ) { wrupdate(); }
+			else if( ch == 3 ) { success(id); }
+			else { System.err.print("[알림] 입력하신 번호를 다시 확인해주세요."); }
+		}else {
+			System.err.print("[알림] 입력하신 번호를 다시 확인해주세요.");
+		}
+	}
+	
+	void wrdelete() {
+		
+	}
+	
+	void wrupdate() {
+		
+	}
 }
