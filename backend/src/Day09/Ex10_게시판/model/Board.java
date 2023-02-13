@@ -1,23 +1,21 @@
 package Day09.Ex10_게시판.model;
 
 import java.util.Date;
-
 /*
-	클래스 model 클래스 만들기
-		1. 필드 선정 [ * private 권장 ]
-		2. 생성자 [ 1.빈 2.풀 ]
-		3. 메소드 [ 1.toString() , 2.get,set 메소드 ]
+ 	클래스 model 클래스 만들기
+ 		1. 필드 선정 [ * private 권장 ]
+  		2. 생성자 [ 1.빈 2.풀 ]
+  		3. 메소드 [ 1. toString() , 2.get,set 메소드 ]
  */
-
 public class Board {
-	// 1. 필드
+	// 1. 필드 
 	private String title;
 	private String content;
 	private String writer;
 	private String password;
 	private Date date;
 	private int view;
-	// 2.
+	// 2. 생성자 
 	public Board() {}
 	public Board(String title, String content, String writer, String password, Date date, int view) {
 		this.title = title;
@@ -27,11 +25,10 @@ public class Board {
 		this.date = date;
 		this.view = view;
 	}
-	// 3.메소드
+	// 3. 메소드 
 	@Override
 	public String toString() {
-		return "Board [title=" + title + ", content=" + content + ", writer=" + writer + ", password=" + password
-				+ ", date=" + date + ", view=" + view + "]";
+		return title+"\t"+writer+"\t"+view+"\t"+date;
 	}
 	public String getTitle() {
 		return title;
@@ -71,5 +68,16 @@ public class Board {
 	}
 	
 	
+	
+	
 
 }
+
+
+
+
+
+
+
+
+

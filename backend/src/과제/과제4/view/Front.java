@@ -108,7 +108,7 @@ public class Front {
 		System.out.print("원하시는 게시물 번호를 입력해주세요.");
 		int inno = scanner.nextInt();
 		if( inno >= 0 ) {
-			bc.boardDb.get(inno).no += 1;
+			bc.boardDb.get(inno).no ++;
 			System.out.print("---------- 글 상세페이지 ------------\n");
 			System.out.print("제목 : "+bc.boardDb.get(inno).title+"\n");
 			System.out.print("작성자 : "+bc.boardDb.get(inno).writer+"\t조회수 : "+bc.boardDb.get(inno).no+"\n");
