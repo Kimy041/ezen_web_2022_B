@@ -15,13 +15,7 @@ public class Board {
 		this.writer = writer;
 		this.title = title;
 	}
-
 	// 3. 메소드
-	
-	
-	
-	
-	
 	
 	
 }

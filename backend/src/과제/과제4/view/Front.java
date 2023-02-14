@@ -89,7 +89,7 @@ public class Front {
 			int ch = scanner.nextInt();
 			if( ch == 1 ) { write(id); }
 			else if( ch == 2 ) { view(id); }
-			else if( ch == 3 ) { index(); }
+			else if( ch == 3 ) { break; }
 			else { System.err.print("[알림] 입력하신 번호를 다시 확인해주세요."); }
 		}
 	}
@@ -116,20 +116,37 @@ public class Front {
 			
 			System.out.print("메뉴 > 1.글삭제 2.글수정 3.뒤로가기 : ");
 			int ch = scanner.nextInt();
-			if( ch == 1 ) { wrdelete(); }
-			else if( ch == 2 ) { wrupdate(); }
-			else if( ch == 3 ) { success(id); }
+			if( ch == 1 ) { wrdelete(inno); }
+			else if( ch == 2 ) { wrupdate(inno); }
+			else if( ch == 3 ) { return; }
 			else { System.err.print("[알림] 입력하신 번호를 다시 확인해주세요."); }
 		}else {
 			System.err.print("[알림] 입력하신 번호를 다시 확인해주세요.");
 		}
 	}
 	
-	void wrdelete() {
+	void wrdelete(int inno) {
+		System.out.print("아이디를 입력해주세요."); String confirmid = scanner.next();
+		
+		boolean result = bc.wrdelete(inno, confirmid);
+		if( result ) { System.err.println("글이 삭제되었습니다."); }
+		else { System.err.println("[권한없음]아이디를 확인해주세요."); }
 		
 	}
 	
-	void wrupdate() {
+	void wrupdate(int inno) {
+		System.out.print("아이디를 입력해주세요."); String confirmid = scanner.next();
+		
+		boolean result = bc.wrupdate(inno, confirmid);
+		if( result ) { update(inno); System.err.println("글이 수정되었습니다."); }
+		else { System.err.println("[권한없음]아이디를 확인해주세요."); }
+	}
+	
+	void update(int inno) {
+		System.out.print("---------- 글 수정 ------------\n");
+		System.out.print("새로운 내용 : "); String upwrite = scanner.next();
+		
+		bc.update(inno ,upwrite);
 		
 	}
 }
