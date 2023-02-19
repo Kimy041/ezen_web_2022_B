@@ -1,6 +1,6 @@
-package 중고거래;
+package 과제.중고거래;
 
-import 중고거래.view.Front;
+import 과제.중고거래.view.Front;
 
 public class Start {
 

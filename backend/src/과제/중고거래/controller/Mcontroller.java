@@ -1,10 +1,10 @@
-package 중고거래.controller;
+package 과제.중고거래.controller;
 
 import java.util.ArrayList;
 
-import 중고거래.model.Member;
-import 중고거래.model.Memo;
-import 중고거래.model.Product;
+import 과제.중고거래.model.Member;
+import 과제.중고거래.model.Memo;
+import 과제.중고거래.model.Product;
 
 public class Mcontroller {
 	

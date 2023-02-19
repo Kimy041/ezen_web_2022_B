@@ -1,9 +1,9 @@
-package 중고거래.view;
+package 과제.중고거래.view;
 
 import java.util.Scanner;
 
-import 중고거래.controller.Mcontroller;
-import 중고거래.model.Product;
+import 과제.중고거래.controller.Mcontroller;
+import 과제.중고거래.model.Product;
 
 public class Front {
 	

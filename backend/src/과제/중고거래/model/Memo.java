@@ -1,4 +1,4 @@
-package 중고거래.model;
+package 과제.중고거래.model;
 
 public class Memo {
 	// 관계필드 = 참조필드 [ FK ]
