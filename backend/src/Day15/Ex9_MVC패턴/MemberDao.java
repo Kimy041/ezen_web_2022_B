@@ -28,7 +28,7 @@ public class MemberDao {
 	}
 	
 	// 3. SQL 처리 메소드
-	// 1. 회원가입 메소드 [ 인수 : Dto( id, pw ) , 반환 : 성고[true],실패[false] ]
+	// 1. 회원가입 메소드 [ 인수 : Dto( id, pw ) , 반환 : 성공[true],실패[false] ]
 	public boolean signup( MemberDto dto ) {
 		// 1. SQl 작성한다.
 		String sql = "insert into member ( mid , mpw ) values ( ? , ? )";
