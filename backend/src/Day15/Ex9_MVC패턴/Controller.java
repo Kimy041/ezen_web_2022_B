@@ -17,9 +17,22 @@ public class Controller {
 		// 4. 실행 결과 반환
 		return result;
 	}
-	
+	// 2. 모든 회원 출력
 	public ArrayList<MemberDto> list() {
-		return null;
+		// 1. 모든 회원을 호출하는 DAO 메소드 호출해서 결과 얻기
+		ArrayList<MemberDto> result = MemberDao.getInstance().list();
+		// 2. 결과 반환
+		return result;
+	}
+	
+	// 3. 비밀번호 수정 
+	public boolean Update( int mno , String mpw ) {
+		return MemberDao.getInstance().Update(mno, mpw);
+	}
+	
+	// 4. 회원 삭제
+	public boolean delete( int mno ) {
+		return MemberDao.getInstance().delete(mno);
 	}
 
 }
