@@ -14,6 +14,8 @@ public class View {
 	Scanner scanner = new Scanner(System.in);
 	// 컨트롤 리스트 저장
 	ArrayList<ProductDto> result = Controller.getInstance().list();
+	// 장바구니 리스트
+	ArrayList<ProductDto> cartlist = new ArrayList<>();
 	
 	// 메인화면
 	public void index() {
@@ -140,12 +142,12 @@ public class View {
 				System.out.println("------------- 사용자 페이지 -------------");
 				System.out.printf("%2s \t %7s \t %7s \t %5s \n" , "no" , "제품명" , "제품가격" , "상태" );
 				for( int i = 0 ; i<result.size(); i++ ) {
-					System.out.printf("%2d \t %7s \t %7d \t %5s \n" , i+1 , result.get(i).getPname() , result.get(i).getPprice() , result.get(i).getPcount() == 0 ? "재고부족" : "판매중" );
+					System.out.printf("%2d \t %7s \t %7d \t %5s \n" , result.get(i).getPno() , result.get(i).getPname() , result.get(i).getPprice() , result.get(i).getPcount() == 0 ? "재고부족" : "판매중" );
 				}
-				System.out.print("0.결제 1.제품번호 : ");
+				System.out.print("0.결제 1.제품선택 : ");
 				int ch = scanner.nextInt();
 				if( ch == 0 ) { pay(); }
-				else { cart( ch-1 ); }
+				else { cart( ch );  }
 			}catch( InputMismatchException e ) { 
 				System.out.println("잘못된 입력입니다."); 
 				Scanner scanner = new Scanner(System.in);
@@ -157,19 +159,50 @@ public class View {
 		
 	// 결제
 	public void pay() {
+		System.out.println("------------- 장바구니 -------------");
+		System.out.printf("%2s \t %7s \t %7s \t %5s \n" , "no" , "제품명" , "제품가격" , "개수" );
+		for( int i = 0 ; i<cartlist.size(); i++ ) {
+			System.out.printf("%2d \t %7s \t %7d \t %5s \n" , cartlist.get(i).getPno() , cartlist.get(i).getPname() , cartlist.get(i).getPprice() , cartlist.get(i).getPcount() );
+		}
+		System.out.print("0.결제 1.결제취소 : ");
+		int ch = scanner.nextInt();
+		if( ch == 0 ) { 
+			for( int i = 0 ; i<cartlist.size(); i++ ) {
+				Controller.getInstance().pay(cartlist.get(i).getPno(), result.get(i).getPcount(), cartlist.get(i).getPcount());
+				}
+			System.out.println(" [ 결제 성공 ] "); 
+			cartlist = null;
+			return;
+			}
+		
+		else if( ch == 1 ) { 
+			System.out.println(" [ 결제 취소 ] "); 
+			cartlist = null;
+		}
 		
 	}
 	
-	// 장바구니
+	// 제품 선택
 	public void cart( int pno ) {
+		System.out.println("개수를 입력해주세요.");
+		int ea = scanner.nextInt();
 		int cart = 0;
-		ArrayList<ProductDto> cList = new ArrayList<>();
-		if( result.get(pno).getPcount() > 0 ) {
+		for( int i = 0 ; i <= pno; i++ ) {
+			if( result.get(i).getPno() == pno ) {
+				if( result.get(i).getPcount() > 0 && ea <= result.get(i).getPcount() ) {
+					cart += ea;
+					System.out.println( result.get(i).getPname()+"가 장바구니에 담겼습니다." );
+					ProductDto cartdto = new ProductDto(pno, result.get(i).getPname(), result.get(i).getPprice(), cart);
+					cartlist.add(cartdto);
+					break;
+				}
+				else {System.out.println(" 재고가 부족합니다."); }
+				break;
+			}
 			
-			System.out.println( result.get(pno).getPname()+"가 장바구니에 담겼습니다." );
-		}else {System.out.println(" 재고가 부족합니다."); }	
+		}
+		
 	}
-	
 	
 
 }

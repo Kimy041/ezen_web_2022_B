@@ -20,7 +20,7 @@ public class ProductDao {
 	// 2. 생성자 연동
 	private ProductDao() {
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/과제11" , "root" , "1234" );
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/과제11" , "root" , "kimy172418" );
 		}catch ( Exception e ) { System.out.println( e.getMessage() ); }
 	}
 	
@@ -122,15 +122,23 @@ public class ProductDao {
 	
 	
 	// 결제 [ 인수 : pno , pcount  반환 : 성공 실패 ]
-	public boolean pay( int pno , int pcount ) {
-		
-		return Cupdate( pno , pcount );
+	public boolean pay( int pno , int pcount , int cart ) {
+		// 1. SQl 작성한다.
+		String sql = "update product set pcount = ?  where pno = ?";
+		// 2. 연동 DB에 SQL 대입한다.
+		try {
+			ps = conn.prepareStatement(sql);
+			// 3. ps는 매개변수에 대한 조작 가능
+			ps.setInt(1, pcount -= cart);
+			ps.setInt(2, pno);
+			// 4. ps가 sql 실행
+			ps.executeUpdate();
+			// 5. 결과 반환 
+			return true;
+		}catch(Exception e) { System.out.println("DB 오류 : "+ e); }
+		return false;
 	}
 	
-	// 장바구니 [ 인수 
-	public void cart() {
-		
-	}
 	
 	
 

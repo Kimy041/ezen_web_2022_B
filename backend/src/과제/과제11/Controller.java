@@ -37,13 +37,12 @@ public class Controller {
 		return ProductDao.getInstance().delete(pno);
 	}
 	
+	
+	
 	// 결제
-	public boolean pay( int pno , int pcount ) {
-		return ProductDao.getInstance().Cupdate(pno, pcount);
+	public boolean pay( int pno , int pcount, int cart ) {
+		return ProductDao.getInstance().pay(pno, pcount , cart);
 	}
 	
-	// 장바구니
-	public void cart() {
-		
-	}
+
 }
