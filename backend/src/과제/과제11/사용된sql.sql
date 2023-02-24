@@ -16,7 +16,7 @@ String sql = "insert into product ( pname , pprice , pcount ) values ( ? , ? , ?
 String sql = "select * from product";
 -- 제품 이름, 가격 수정
 String sql = "update product set pname = ? , pprice = ?  where pno = ?";
--- 제품 수량 수정
+-- 제품 수량 수정 / 사용자 구매
 String sql = "update product set pcount = ?  where pno = ?";
 -- 제품 삭제
 String sql = "delete from product where pno = ?";

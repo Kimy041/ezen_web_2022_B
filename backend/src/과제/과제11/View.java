@@ -72,8 +72,8 @@ public class View {
 		boolean result = Controller.getInstance().signup(pname, pprice, pcount);
 		
 		// 결과
-		if( result ) { System.out.println(" [ 제품 등록 ] "); }
-		else { System.out.println(" [ 제품 등록 실패 ] "); }
+		if( result ) { System.out.println(" [ 제품 등록 ] "); return; }
+		else { System.out.println(" [ 제품 등록 실패 ] "); return; }
 	}
 	
 	// 2. 모든제품 출력
@@ -99,8 +99,8 @@ public class View {
 		boolean result = Controller.getInstance().update(pno, pnmae, pprice);
 		
 		// 결과
-		if( result ) { System.out.println(" [ 수정 성공 ] "); }
-		else { System.out.println(" [ 수정 실패 ] "); }
+		if( result ) { System.out.println(" [ 수정 성공 ] "); return; }
+		else { System.out.println(" [ 수정 실패 ] "); return; }
 	}
 	
 	// 4. 제품 재고 수정 [ 인수 : pno , pcount  반환 : 성공 실패 ]
@@ -115,8 +115,8 @@ public class View {
 		boolean result = Controller.getInstance().Cupdate(pno, pcount);
 		
 		// 결과
-		if( result ) { System.out.println(" [ 수정 성공 ] "); }
-		else { System.out.println(" [ 수정 실패 ] "); }
+		if( result ) { System.out.println(" [ 수정 성공 ] "); return; }
+		else { System.out.println(" [ 수정 실패 ] "); return; }
 	}
 	
 	// 5. 제품 삭제 
@@ -129,8 +129,8 @@ public class View {
 		boolean result = Controller.getInstance().delete(pno);
 		
 		// 결과
-		if( result ) { System.out.println(" [ 제품 삭제 ] "); }
-		else { System.out.println(" [ 제품 삭제 실패 ] "); }
+		if( result ) { System.out.println(" [ 제품 삭제 ] "); return; }
+		else { System.out.println(" [ 제품 삭제 실패 ] "); return; }
 		
 	}
 //------------------------------------------------------------------------------------------------------------------//
@@ -171,13 +171,12 @@ public class View {
 				Controller.getInstance().pay(cartlist.get(i).getPno(), result.get(i).getPcount(), cartlist.get(i).getPcount());
 				}
 			System.out.println(" [ 결제 성공 ] "); 
-			cartlist = null;
-			return;
+			cartlist.clear();
 			}
 		
 		else if( ch == 1 ) { 
-			System.out.println(" [ 결제 취소 ] "); 
-			cartlist = null;
+			System.out.println(" [ 결제 취소 ] 장바구니가 리셋되었습니다. "); 
+			cartlist.clear();
 		}
 		
 	}
