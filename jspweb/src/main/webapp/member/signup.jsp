@@ -7,23 +7,30 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+	<%-- <%@ include file="../header.jsp" %> --%> <!-- 상대경로 -->
+	<%@ include file="/header.jsp" %>	<!--  (webapp이하생략)절대경로 -->
 	<h3> 회원가입 </h3>
 	
 	<form class="signupForm">	<!-- 폼 전송시 자식 input의 매개변수 식별 : name -->
-		아이디 :			<input onkeyup="idcheck()" maxlength="30" type="text" name="mid" 			class="mid" >
-		<span class="idcheckconfirm" ></span> </br>
-		비밀번호 :			<input type="text" name="mpw" 			class="mpw" >			</br>
-		비밀번호 확인 :		<input type="text" name="mpwconfirm" 	class="mpwconfirm" >	</br>
-		이메일 :			<input type="text" name="memail" 		class="memail" >		</br>
-		프로필 :			<input type="file" name="mimg" 			class="mimg" >			</br>
+		아이디 :			<input onkeyup="idcheck()" 			maxlength="30" type="text" 		name="mid" 			class="mid" >
+			<span class="checkconfirm" ></span> </br>
+		비밀번호 :			<input onkeyup="pwdcheck()"			maxlength="20" type="password" 	name="mpw" 			class="mpw" >		
+		</br>
+		비밀번호 확인 :		<input onkeyup="pwdconfirmcheck()" 	maxlength="20" type="password" 	name="mpwconfirm" 	class="mpwconfirm" >	
+			<span class="checkconfirm" ></span> </br>
+		이메일 :			<input onkeyup="emailcheck()" 						type="text" 	name="memail" 		class="memail" >		
+			<span class="checkconfirm" ></span> </br>
+		프로필 :			<input onchange="premimg(this)"							type="file" 	name="mimg" 		class="mimg" >			
+			미리보기
+			<img class="premimg" alt="" src="/jspweb/member/pimg/default.webp">
+		</br>
+		
 		<button onclick="signup()" type="button" > 가입 </button>
 	</form>
 	
 	
-	<!-- jquery -->
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<!--  -->
+	
+	
 	<script src="/jspweb/js/member/signup.js" type="text/javascript"></script>
 
 </body>
