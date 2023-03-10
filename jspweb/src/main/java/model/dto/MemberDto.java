@@ -116,7 +116,7 @@ public class MemberDto {
 		return memail;
 	}
 
-	public void setMemai(String memai) {
+	public void setMemai(String memail) {
 		this.memail = memail;
 	}
 	
