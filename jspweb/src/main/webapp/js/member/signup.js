@@ -174,7 +174,7 @@ function getauth(){
 	
 	// 1. 인증 구역 html 구성
 	let html = `
-				<div class="timebox"> 02:00 </div>
+				<div class="timebox"> 02 : 00 </div>
 				<input type="text" class="authinput" placeholder="인증코드">
 				<button onclick="authconfirm()" type="button">확인</button>
 				`
