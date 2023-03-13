@@ -265,7 +265,8 @@ function signup(){
 			console.log( r );
 			if( r == 'true'){
 				alert('회원가입 성공');
-				location.href="/jspweb/index.jsp"; // 해당 페이지
+				onpenModal();
+				//location.href="/jspweb/index.jsp"; // 해당 페이지
 			}else{ alert('회원가입 실패') }
 		}
 	})

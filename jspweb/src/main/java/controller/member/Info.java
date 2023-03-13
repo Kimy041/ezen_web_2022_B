@@ -101,15 +101,66 @@ public class Info extends HttpServlet {
 		response.setContentType("application/json");	// 응답 데이터 타입
 		response.getWriter().print(jsonArray);			// 응답 데이터 보내기
 	}
+	
+	// 4. 회원탈퇴
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		// 1. 로그인된 회원탈퇴
+			// 1. 로그인된 회원아이디 가져오기 [ 세션( Object ) ]
+		String mid = (String)request.getSession().getAttribute("login");
+			System.out.println( "mid : " + mid );
+		String mpw = request.getParameter("mpw");
+		
+		// 2. Dao에게 요청후 결과 받기
+		boolean result = MemberDao.getInstance().delete(mid , mpw);
+			System.out.println("result : "+ result);
+		// 3. 결과 ajax에게 보내기
+		response.getWriter().print(result);
+	}
 
 	// 3. 회원 정보 수정
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 1. 업로드 코드 구현
+			// 1. 업로드 한 파일을 해당 서버 경로로 업로드
+		String path = request.getSession().getServletContext().getRealPath("/member/pimg");
+			// 2. 객체
+		MultipartRequest multi = new MultipartRequest(request, path , 1024*1024*10 , "UTF-8" , new DefaultFileRenamePolicy() );
+		// 2.
+		String mid = (String)request.getSession().getAttribute("login");
+		String mpw = multi.getParameter("mpw");
+		String newmpw = multi.getParameter("newmpw");
+		String memail = multi.getParameter("memail");
+		String newmimg = multi.getFilesystemName("newmimg");
+		String defaultimg = multi.getParameter("defaultimg");
 		
+		// 3. 만약에 새로운 첨부파일이 없으면
+		if( newmimg == null ) {
+			// 기존 이미지 파일 그래도 사용
+			newmimg = MemberDao.getInstance().getMember(mid).getMimg();
+		}
+		if( defaultimg.equals("true")) {
+			newmimg = null;
+		}
+		
+		boolean result = MemberDao.getInstance().update(mid, mpw, newmpw, memail , newmimg );
+		response.getWriter().print(result);
 	}
 
-	// 4. 회원탈퇴
-	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
+	/*
+	 // 1. 로그인된 회원수정
+			// 1. 필요한 데이터 요청
+		String mid = (String)request.getSession().getAttribute("login");
+		System.out.println("mid : "+ mid);
+		String mpw = request.getParameter("mpw");
+		System.out.println("mpw : "+ mpw);
+		String newmpw = request.getParameter("newmpw");
+		System.out.println("newmpw : "+ newmpw);
+		String memail = request.getParameter("memail");
+		System.out.println("memail : "+ memail);
+			// 2.
+		boolean result = MemberDao.getInstance().update(mid, mpw, newmpw, memail);
+			// 3.
+		response.getWriter().print(result);
+	 */
 
 }
