@@ -43,7 +43,6 @@ function getlogin(){
 				}
 				
 			}
-			console.log( html );
 			document.querySelector('.submenu').innerHTML = html;
 		}
 	})

@@ -49,7 +49,6 @@ public class Info extends HttpServlet {
  		 */
  		// * 현재 서버의 배포된 프로젝트내 경로 찾기
  		String uploadpath = request.getSession().getServletContext().getRealPath("/member/pimg");
- 		System.out.println( uploadpath );
  		// * 업로드 [ 유저파일 --> 서버폴더내 이동 ]
  		MultipartRequest multi = new MultipartRequest(
  				request, 						// 1. 요청방식
@@ -65,7 +64,7 @@ public class Info extends HttpServlet {
  		String mimg = multi.getFilesystemName("mimg");	// 첨부파일된 파일명 호출[ .getFilesystemName ]
  		
  		MemberDto dto = new MemberDto(0, mid, mpw, mimg, memail);
- 			System.out.println("dto : "+ dto);
+
  		boolean result = MemberDao.getInstance().signup(dto);
  		response.getWriter().print(result);
  		
@@ -90,12 +89,10 @@ public class Info extends HttpServlet {
 	// 2.  회원1명 / 회원 여러명 호출 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. Dao 에게 모든 회원명단 요청 후 저장
-		ArrayList<MemberDto> reuslt = MemberDao.getInstance().getMemberList();
-		System.out.println(" result : "+ reuslt );
+		ArrayList<MemberDto> result = MemberDao.getInstance().getMemberList();
 		// 2. JAVA객체 ---> JS객체 형변환 [ 서로 다른 언어 사용하니까 ]
 		ObjectMapper mapper = new ObjectMapper();
-		String jsonArray = mapper.writeValueAsString( reuslt );
-		System.out.println( "jsonArray : " + jsonArray );
+		String jsonArray = mapper.writeValueAsString( result );
 		// 3. 응답
 		response.setCharacterEncoding("UTF-8");			// 응답 데이터 한글 인코딩 
 		response.setContentType("application/json");	// 응답 데이터 타입
@@ -108,12 +105,10 @@ public class Info extends HttpServlet {
 		// 1. 로그인된 회원탈퇴
 			// 1. 로그인된 회원아이디 가져오기 [ 세션( Object ) ]
 		String mid = (String)request.getSession().getAttribute("login");
-			System.out.println( "mid : " + mid );
 		String mpw = request.getParameter("mpw");
 		
 		// 2. Dao에게 요청후 결과 받기
 		boolean result = MemberDao.getInstance().delete(mid , mpw);
-			System.out.println("result : "+ result);
 		// 3. 결과 ajax에게 보내기
 		response.getWriter().print(result);
 	}

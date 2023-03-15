@@ -34,7 +34,6 @@ public class Login extends HttpServlet {
 			// JAVA 객체 --> JS 객체 변환
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(result);
-			System.out.println(" json : "+ json );
 			
 		// 3. 응답
 		response.setCharacterEncoding("UTF-8");
