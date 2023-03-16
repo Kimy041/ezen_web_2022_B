@@ -18,8 +18,8 @@ function getBoard(){
 			let html = `
 						${ r.bdate } /
 						${ r.bview } /
-						${ r.bup } /
-						${ r.bdown } /
+						<button onclick="bIncrease(2)" type"button"> ${ r.bup } </button> /
+						<button onclick="bIncrease(3)" type"button"> ${ r.bdown } </button> /
 						`
 			document.querySelector('.infobox').innerHTML = html;
 			document.querySelector('.pimgbox').innerHTML = r.mid;
@@ -54,6 +54,26 @@ function bdownload( bfile ){
 	
 	location.href="/jspweb/filedownload?bfile="+bfile;
 }
+
+// 3. 조회수[1] 좋아요수[2] 싫어요수[3]
+bIncrease( 1 ); // 해당 jsp/js가 열리는 순가 [ 조회수 증가 ]
+function bIncrease( type ){
+	// 1. 현재 게시물의 번호 [ 증가할 대상 ]
+	let bno = document.querySelector('.bno').innerHTML;
+	// 2. 
+	$.ajax({
+		url : "/jspweb/board/view" ,
+		method : "get" ,
+		data : { "type" : type , "bno" : bno } ,
+		success : (r)=>{
+			console.log('통신');
+			console.log(r);
+			// 새로고침
+			getBoard();
+		}
+	})
+}
+
 /*
 	1. onclick = JS코드 작성구역
 		1. bdownload( 춘식이.png )	: .파일확장자 구분기호가 아닌 .접근연산자로 사용됨

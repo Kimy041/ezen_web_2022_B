@@ -17,11 +17,11 @@
 		} */
 	</script>
 	<%
-		// 1. jsp 로그인 여부 제어
+		 // 1. jsp 로그인 여부 제어
 		Object o = request.getSession().getAttribute("login");
 		if( o == null ){
 			response.sendRedirect("/jspweb");
-		}
+		} 
 	%>
 	
 	<div class="container">
