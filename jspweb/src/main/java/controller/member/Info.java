@@ -13,8 +13,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import model.dao.BoardDao;
 import model.dao.MemberDao;
 import model.dto.MemberDto;
+import model.dto.PageDto;
 
 @WebServlet("/member")
 public class Info extends HttpServlet {
@@ -88,11 +90,39 @@ public class Info extends HttpServlet {
  	}
 	// 2.  회원1명 / 회원 여러명 호출 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// ------------- 검색 처리 ----------------------
+		// 1.검색 매개변수 요청[ key , keyword ]		2. gettotalsize/getMemberList 전달
+		String key = request.getParameter("key");
+		String keyword = request.getParameter("keyword");
+		// ------------- page 처리 -----------------------
+		// 1. 현재페이지[ 요청 ]		2. 페이지당 표시할게시물수		3. 현재페이지[ 게시물 시작 , 끝 ]
+		int page = Integer.parseInt( request.getParameter("page") );
+		int listsize = Integer.parseInt( request.getParameter("listsize") );
+		int startrow = (page-1)*listsize; // 해당 페이지에서의 게시물 시작번호
+		// ------------- page 버튼 만들기 ------------------
+		// 1. 전체페이지수[ 총게시물레코드수/페이지당 표시수 ]	2.페이지 표시할 최대버튼수		3.시작/끝 버튼 번호
+		// int totalsize = MemberDao.getInstance().gettotalsize(); // 검색 없을때
+		int totalsize = MemberDao.getInstance().gettotalsize( key , keyword );
+		int totalpage = totalsize%listsize == 0 ? totalsize/listsize : totalsize/listsize+1;
+		int btnsize = 5; // 최대 페이징버튼 출력수
+		int startbtn = ( (page-1)/btnsize )*btnsize+1;
+		int endbtn = startbtn+btnsize-1;
+		// 마지막버튼수가 총페이지수보다 커짐 방지로 대입
+		if( endbtn > totalpage ) endbtn = totalpage;
+		
+		
 		// 1. Dao 에게 모든 회원명단 요청 후 저장
-		ArrayList<MemberDto> result = MemberDao.getInstance().getMemberList();
+		// ArrayList<MemberDto> result = MemberDao.getInstance().getMemberList( startrow , listsize );
+		ArrayList<MemberDto> result = MemberDao.getInstance().getMemberList( startrow , listsize , key , keyword );
+		
+		// page dto
+		PageDto pageDto = new PageDto(page, listsize, startrow, totalsize, totalpage, btnsize, startbtn, endbtn, null, result);
+		
+		
 		// 2. JAVA객체 ---> JS객체 형변환 [ 서로 다른 언어 사용하니까 ]
 		ObjectMapper mapper = new ObjectMapper();
-		String jsonArray = mapper.writeValueAsString( result );
+		String jsonArray = mapper.writeValueAsString( pageDto );
 		// 3. 응답
 		response.setCharacterEncoding("UTF-8");			// 응답 데이터 한글 인코딩 
 		response.setContentType("application/json");	// 응답 데이터 타입

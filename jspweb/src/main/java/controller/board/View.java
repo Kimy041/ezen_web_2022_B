@@ -1,6 +1,8 @@
 package controller.board;
 
 import java.io.IOException;
+
+import javax.naming.directory.InvalidAttributeIdentifierException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,7 +43,8 @@ public class View extends HttpServlet {
 			request.getSession().setAttribute( type+ip+bno , 1 );
 				// 3. 세션 생명주기[ 생명주기 지나면 자동으로 메모리 삭제 / 초 단위 ]
 					// 1. 세션 초기화 되는 기준
-						// 서버 끄면 2.서버 다시 켰을때 3.MaxInactiveInterval 설정한 시간이 지났을때
+						// 1. 서버 끄면 2.서버 다시 켰을때 3.MaxInactiveInterval 설정한 시간이 지났을때
+						// 4. invalidate() 5. setAttribute( "세션" , null )
 			request.getSession().setMaxInactiveInterval( 60*60*24 ); // 하루
 			
 			// 2. Dao 처리

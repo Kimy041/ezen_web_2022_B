@@ -57,10 +57,20 @@ public class BoardDto {
 		this.cno = cno;
 		this.mid = mid;
 	}
+	// 5.업데이트 생성자
+	public BoardDto(int bno, String btitle, String bcontent, String bfile, int cno) {
+		super();
+		this.bno = bno;
+		this.btitle = btitle;
+		this.bcontent = bcontent;
+		this.bfile = bfile;
+		this.cno = cno;
+	}
 	
 	public String getMid() {
 		return mid;
 	}
+	
 	public void setMid(String mid) {
 		this.mid = mid;
 	}

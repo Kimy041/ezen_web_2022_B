@@ -15,9 +15,12 @@ public class PageDto {
 	
 	// !! : 게시물 목록
 	ArrayList<BoardDto> boardList; // 출력할 데이터[게시물] 리스트
+	// 회원게시물 목록
+	ArrayList<MemberDto> memberList;
 	
 	public PageDto() { }
-
+	
+	// 게시물 페이징처리
 	public PageDto(int page, int listsize, int startrow, int totalsize, int totalpage, int btnsize, int startbtn,
 			int endbtn, ArrayList<BoardDto> boardList) {
 		super();
@@ -32,12 +35,28 @@ public class PageDto {
 		this.boardList = boardList;
 	}
 	
+	
+	// 풀생성자
+	public PageDto(int page, int listsize, int startrow, int totalsize, int totalpage, int btnsize, int startbtn,
+			int endbtn, ArrayList<BoardDto> boardList, ArrayList<MemberDto> memberList) {
+		super();
+		this.page = page;
+		this.listsize = listsize;
+		this.startrow = startrow;
+		this.totalsize = totalsize;
+		this.totalpage = totalpage;
+		this.btnsize = btnsize;
+		this.startbtn = startbtn;
+		this.endbtn = endbtn;
+		this.boardList = boardList;
+		this.memberList = memberList;
+	}
 
 	@Override
 	public String toString() {
 		return "PageDto [page=" + page + ", listsize=" + listsize + ", startrow=" + startrow + ", totalsize="
 				+ totalsize + ", totalpage=" + totalpage + ", btnsize=" + btnsize + ", startbtn=" + startbtn
-				+ ", endbtn=" + endbtn + ", boardList=" + boardList + "]";
+				+ ", endbtn=" + endbtn + ", boardList=" + boardList + ", memberList=" + memberList + "]";
 	}
 
 	public int getPage() {
@@ -112,5 +131,13 @@ public class PageDto {
 		this.boardList = boardList;
 	}
 
+	public ArrayList<MemberDto> getMemberList() {
+		return memberList;
+	}
 
+	public void setMemberList(ArrayList<MemberDto> memberList) {
+		this.memberList = memberList;
+	}
+	
+	
 }
