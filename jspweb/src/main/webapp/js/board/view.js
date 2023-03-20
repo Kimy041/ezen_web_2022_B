@@ -36,7 +36,6 @@ function getBoard(){
 				document.querySelector('.bcontent').innerHTML = r.bcontent;
 				
 				if( r.bfile == null ){ // 첨부파일 없을때
-					
 				}else{ // 첨부파일 있을때
 					// html = ` ${ r.bfile } <button onclick="bdownload( '${ r.bfile }' )" type="button"> 다운로드 </button>`
 					html = `<a href="/jspweb/filedownload?bfile=${ r.bfile }">

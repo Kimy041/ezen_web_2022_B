@@ -42,7 +42,7 @@
 			
 			<div class="bcontent"> </div>
 			
-			<div class="bfile"><i class="fas fa-download"></i> </div>
+			<div class="bfile"><i class="fas fa-download"></i> 첨부파일 없음 </div>
 			
 			<div class="btnbox"> </div>
 			
