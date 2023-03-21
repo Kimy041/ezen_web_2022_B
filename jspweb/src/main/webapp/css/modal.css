@@ -4,13 +4,15 @@
 .modal_wrap{
 	background-color: rgb(197 197 197 / 50%);
 	position: fixed;	/* fixed 고정위치 */
+	/* 카카오지도 z-index 사용중 */
+	z-index : 999;		/* 다른 position css와 겹쳤을때의 우선순위 */
 	top: 0;	left: 0;	/* 왼쪽 상단 위치 설정 */
 	width: 100%; height: 100%;	/* 모든 화면 감싸기 */
-	/* 내용물 정 가눙데 배치 */
+	/* 내용물 정 가운데 배치 */
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	/* 처음에는 숨기기 */
+	/* 모달 열기/닫기 -> js */
 	display: none;
 }
 /* 모달 상자 만들기 */
