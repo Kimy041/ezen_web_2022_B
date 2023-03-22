@@ -67,57 +67,56 @@ var clusterer = new kakao.maps.MarkerClusterer({
 });
 
 
-coord();
-function coord(){
-	$.ajax({
-	url : "https://api.odcloud.kr/api/3035882/v1/uddi:5fae3cf5-bc15-4eba-87d8-8289b74e659b_201912202015?page=1&perPage=292&serviceKey=uqDeckQgXrBxTbpjWQQipiqeaa6Hjua%2F2z%2FenRkuNzABtujDNvyP1NkVpBZ2mifI%2BuEUiw0nW64TrfPcJn%2BCXg%3D%3D" ,
-	method : "get" ,
-	async : 'false' ,
-	success : (r)=>{
+
+$.ajax({
+url : "https://api.odcloud.kr/api/3035882/v1/uddi:5fae3cf5-bc15-4eba-87d8-8289b74e659b_201912202015?page=1&perPage=292&serviceKey=uqDeckQgXrBxTbpjWQQipiqeaa6Hjua%2F2z%2FenRkuNzABtujDNvyP1NkVpBZ2mifI%2BuEUiw0nW64TrfPcJn%2BCXg%3D%3D" ,
+method : "get" ,
+async : 'false' ,
+success : (r)=>{
+	
+	/*------------------------------------------------------*/
+	// 주소-좌표 변환 객체를 생성합니다
+	let geocoder = new kakao.maps.services.Geocoder();
+	
+	// 주소로 좌표를 검색합니다
+	for(let i = 0 ; i < r.data.length ; i++ ){
 		
-		/*------------------------------------------------------*/
-		// 주소-좌표 변환 객체를 생성합니다
-		let geocoder = new kakao.maps.services.Geocoder();
+		geocoder.addressSearch(r.data[i].주소, function(result, status) {
 		
-		// 주소로 좌표를 검색합니다
-		for(let i = 0 ; i < r.data.length ; i++ ){
-			
-			geocoder.addressSearch(r.data[i].주소, function(result, status) {
-			
-					    // 정상적으로 검색이 완료됐으면 
-					     if (status === kakao.maps.services.Status.OK) {
-					
-					   
-			 	        let marker = new kakao.maps.Marker({
-				            position :new kakao.maps.LatLng(result[0].y, result[0].x) ,
-				            image : markerImage // 마커 이미지 
-				        });
-										 	
-				 		
-					 	
-					 	clusterer.addMarker(marker); // 클러스터러에 마커들/배열을 추가합니다
-					 	
-					 	// 위에서 생성된 마커객체의 클릭 이벤트 추가 하기
-					kakao.maps.event.addListener(marker, 'click', function() {
-						 
-						 // 모달 정보 담기
-						 document.querySelector('.modal_title').innerHTML = r.data[i].약국명;
-						 document.querySelector('.modal_title').style.fontSize = '15px'
-						 // 모달 띄우기
-						 onpenModal();
-						});
-			    	} 
-				});
-			}
+				    // 정상적으로 검색이 완료됐으면 
+				     if (status === kakao.maps.services.Status.OK) {
+				
+				   
+		 	        let marker = new kakao.maps.Marker({
+			            position :new kakao.maps.LatLng(result[0].y, result[0].x) ,
+			            image : markerImage // 마커 이미지 
+			        });
+									 	
+			 		
+				 	
+				 	clusterer.addMarker(marker); // 클러스터러에 마커들/배열을 추가합니다
+				 	
+				 	// 위에서 생성된 마커객체의 클릭 이벤트 추가 하기
+				kakao.maps.event.addListener(marker, 'click', function() {
+					 
+					 // 모달 정보 담기
+					 document.querySelector('.modal_title').innerHTML = r.data[i].약국명;
+					 document.querySelector('.modal_title').style.fontSize = '15px'
+					 // 모달 띄우기
+					 onpenModal();
+					});
+		    	} 
+			});
 		}
-	})
-}
+	}
+})
+
 
 
 
 /*------------------------ 마커 이미지 변경 ------------------------------------*/
 var imageSrc = '/jspweb/img/mortar.png', // 마커이미지의 주소입니다    
-    imageSize = new kakao.maps.Size(30, 30), // 마커이미지의 크기입니다
+    imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
     imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
       
 // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다

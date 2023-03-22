@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+.chattingbox{ /* 채팅 전체 구역 */
+	width: 30%;
+	margin: 50px auto;	
+}
+.contentbox{ /* 채팅 정보가 출력되는 구역 */
+	background-color: #badde0;
+	height: 700px;
+	/* 해당 구역크기보다 내용물이 커지면 스크롤 생성 */
+	overflow: scroll;
+	padding: 20px;
+}
+.sendcontent{ /* 보낼때 */
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+	margin-top: 15px;
+}
+.sendcontent .content{ /* 보낼때 내용상자 색상 */
+	background-color: #FEE500;
+}
+.date{ /*시간 */
+	font-size: 2px;
+	margin: 0px 5px;
+}
+.content{ /* 내용물 */
+	background-color: #ffffff;
+	border-radius: 12px;
+	padding: 8px;
+	/* 해당 구역크기보다 내용물이 커지면 자동줄바꿈처리 */
+	max-width: 70%; /* 해당 구역크기의 최대 사이즈 */
+	word-break: break-all;
+	font-size: 14px;
+}
+.alerm{	/* 알람메시지 */
+	width: 70%;
+	margin: 20px auto;
+	font-size: 11px;
+	text-align: center;
+	background-color: #b1cad5;
+	border-radius: 10px;
+}
+.msgbox{
+	width: 100%;
+	border: 1px solid #e8e8e8;
+	padding: 15px;
+	resize: none;	
+}
+.chattingbtnbox{
+	display: flex;	
+	justify-content: flex-end;
+}
+.sendbtn{
+	padding: 10px;
+	font-size: 12px;
+	background-color: #FEE500;
+	border: none;
+	border-radius: 5px;
+}
+.tocontent{
+	display: flex;;
+	justify-content: flex-start;
+}
+.name{
+	font-size: 14px;
+}
+.rcontent{
+	margin-left: 8px;
+}
+.contentdate{
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-start;
+}
