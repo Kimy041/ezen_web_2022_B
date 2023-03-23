@@ -9,7 +9,14 @@
 </head>
 <body>
 	<%@ include file="/header.jsp" %>
-	<div class="container">
+	<div class="container chattingwrap">
+		
+		<div class="connectlistbox">	<!-- 접속 명단 표시 구역 -->
+			
+		</div>
+		
+		
+		
 		
 		<div class="chattingbox">	<!--  채팅 구역 -->
 		
@@ -22,6 +29,23 @@
 			<textarea onkeyup="enterkey()" class="msgbox" rows="" cols=""></textarea>
 			
 			<div class="chattingbtnbox">
+				
+				<!-- 
+					bs : 드롭다운
+						클릭위치 : data-bs-toggle="dropdown"
+						드롭다운시 표시할 위치 : class="dropdown-menu"
+				
+				 -->
+				<!-- 드롭다운 버튼 -->
+				<button class="emobtn" type="button" data-bs-toggle="dropdown"> 
+					<i class="far fa-smile"></i>
+				</button>
+				
+				<!--  드롭다운 버튼 클릭시 보이는 구역 -->
+				<div class="dropdown-menu emolist">
+					
+				</div>
+				
 				<button onclick="보내기()" class="sendbtn" type="button">보내기</button>
 			</div>
 			

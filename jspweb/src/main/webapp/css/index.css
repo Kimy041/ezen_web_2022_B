@@ -31,7 +31,7 @@ a{ color: black; text-decoration: none;}
 }
 .mainmenu li{ margin: 0px 10px; }
 .submenu{  /* 서브 메뉴 구역 */
-	width: 22%; 
+	width: 34%; 
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;

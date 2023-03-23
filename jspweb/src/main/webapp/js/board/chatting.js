@@ -53,23 +53,44 @@ if( memberInfo.mid == null ){ // memberInfo : 헤더js 존재하는 객체
 	클라이언트소켓.onopen = function(e){ 서버소켓연결(e); }	// 클라이언트소켓 객체에 정의한 함수 대입
 	클라이언트소켓.onmessage = function(e){ 메시지받기(e); }
 	클라이언트소켓.onclose = function(e){ 연결해제(e); }
+	클라이언트소켓.onerror = function(e){ alert('문제발생:관리자에게문의'+e) }
 }
 // 2. 클라이언트소켓이 접속했을때 이벤트/함수 정의
-function 서버소켓연결(){ contentbox.innerHTML += `
-											<div class="alerm">
-												<span>-- 채팅방 입장 하셨습니다. --</span>
-											</div>
-												` 
+function 서버소켓연결( e ){ 
+	
+	자료보내기( memberInfo.mid +"님이  채팅방에 접속했습니다." , "alarm");
+
 }	// 접속했을때 하고 싶은 함수 정의
 
-// 3. 클라이언트소켓이 서버에게 메시지흫 보내기 [ @OnMessage ]
+// 3. 클라이언트소켓이 서버에게 메시지흫 보내기 [ @OnMessage ] ( 1. 보내기버튼 눌렀을때 2.입력창에서 엔터눌렀을때 ) type = msg
 function 보내기(){
 	let msgbox = document.querySelector('.msgbox').value;
 	// ** 서버소켓에게 메시지 전송하기
-	클라이언트소켓.send( msgbox );
+		// JSON형식의 문자열 타입 만들어서 문자열로 타입으로 전송
+		// JSON.parse( JSON형식의 문자열타입 ) 	: 문자열타입 --> JSON 타입으로 변환
+		// JSON.stringify( JSON객체 )			: JSON타입 --> JSON 형식[모양]의 String 타입으로 변환
+		let msg ={
+			type : 'msg' ,
+			msgbox : msgbox 
+		}
+	클라이언트소켓.send( JSON.stringify(msg) );
 	// 전송 성공시 채팅 입력창 초기화
 	document.querySelector('.msgbox').value = '';
 }
+// 4-2. type 에 따른 html 구별
+function 메시지타입구분( msg ){
+	let json = JSON.parse( msg );
+	
+	let html = '';
+	if( json.type == 'msg' ){
+		html += `<div class="content"> ${ json.msgbox } </div>`
+	}else if( json.type == 'emo'){
+		html += `<div class="content emocontent"><img alt="" src="/jspweb/img/imoji/emo${json.msgbox}.gif" width="70px"></div>`
+	}
+	return html;
+}
+
+
 // 4. 서버로부터 메시지가 왔을때 메시지 받기
 function 메시지받기(e){ // <----- e <-------- getBasicRemote().sendText(msg);
 	console.log(e);
@@ -78,12 +99,36 @@ function 메시지받기(e){ // <----- e <-------- getBasicRemote().sendText(msg
 	
 	let data = JSON.parse( e.data );	// 전달받은 메시지 dto
 	
+
+	
+	// 명단[여러개=list/Array] vs 메시지정보[1개=dto/object]
+		// Array 타입 확인 : Array.isArray( 객체 ) : 해당 객체가 배열/리스트이면 true
+	if( Array.isArray( data ) ){
+		let html = '';
+		data.forEach( (o)=>{
+			html +=`
+					<div class="connetbox">	<!-- 접속 명단 1명기준  -->
+						<div><img alt="" src="/jspweb/member/pimg/${ o.frommimg==null ? 'default.webp' : o.frommimg }" class="hpimg"> </div>
+						<div class="name"> ${ o.frommid }</div>
+					</div>
+					`
+		});
+		document.querySelector('.connectlistbox').innerHTML = html;
+		
+	}else if( JSON.parse(data.msg).type == 'alarm'){
+		contentbox.innerHTML += `
+								<div class="alarm">
+									<span>-- ${ JSON.parse(data.msg).msgbox } --</span>
+								</div>
+									` 
+	}
+	
 	// 보낸사람과 현재 유저와 일치하면 [ 내가 보낸 메시지 ]
-	if( data.frommid == memberInfo.mid ){
+	else if( data.frommid == memberInfo.mid ){
 		contentbox.innerHTML += `
 								<div class="sendcontent">
 									<div class="date"> ${ data.time } </div>
-									<div class="content"> ${ data.msg } </div>
+									${ 메시지타입구분( data.msg ) }
 								</div>
 								`	
 	}else{ // [ 내가 받은 메시지 ]
@@ -93,7 +138,7 @@ function 메시지받기(e){ // <----- e <-------- getBasicRemote().sendText(msg
 									<div class="rcontent">
 										<div class="name"> ${ data.frommid } </div>
 										<div class="contentdate">
-											<div class="content"> ${ data.msg } </div>
+											${ 메시지타입구분( data.msg ) }
 											<div class="date"> ${ data.time } </div>
 										</div>
 									</div>
@@ -112,7 +157,8 @@ function 메시지받기(e){ // <----- e <-------- getBasicRemote().sendText(msg
 
 // 5. 서버와 연결이 끊겼을때. [ 클라이언트소켓 객체가 초기화될때 -> F5 , 페이지 전환할때 등등 ]
 function 연결해제(e){
-	console.log('연결해제')
+	// 이미 세션이 종료후에 발생하는 함수이므로 아래 코드는 다른 세션에게 전달 불가능 
+	// 자료보내기( memberInfo.mid +"님이  채팅방을 나가습니다." , "alarm");
 }
 // 6. 엔터키를 눌렀을떼
 function enterkey(){
@@ -120,6 +166,22 @@ function enterkey(){
 	if( window.event.keyCode == 13 ){
 		보내기();
 	}
+}
+// 7. 이모티콘 출력
+getemo();
+function getemo(){
+	let html = '';
+	for( let i = 1 ; i<=43; i++){
+		html += `<img onclick="자료보내기( ${i} , 'emo' )" alt="" src="/jspweb/img/imoji/emo${i}.gif" width="70px">`
+	}
+	document.querySelector('.emolist').innerHTML = html;
+}
+function 자료보내기( msgbox , type ){
+	let msg ={
+			type : type ,
+			msgbox : msgbox 
+		}
+		클라이언트소켓.send( JSON.stringify( msg ) );
 }
 
 /*

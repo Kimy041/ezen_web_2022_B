@@ -1,8 +1,20 @@
 @charset "UTF-8";
-
+.chattingwrap{
+	display: flex;
+	justify-content: center;
+}
+.connectlistbox{
+	width: 15%;
+	padding: 10px;
+}
+.connetbox{
+	display: flex;
+	align-items: center;
+	margin-bottom: 15px;
+}
+.connetbox .name{ margin-left: 10px; }
 .chattingbox{ /* 채팅 전체 구역 */
 	width: 30%;
-	margin: 50px auto;	
 }
 .contentbox{ /* 채팅 정보가 출력되는 구역 */
 	background-color: #badde0;
@@ -33,7 +45,7 @@
 	word-break: break-all;
 	font-size: 14px;
 }
-.alerm{	/* 알람메시지 */
+.alarm{	/* 알람메시지 */
 	width: 70%;
 	margin: 20px auto;
 	font-size: 11px;
@@ -47,9 +59,10 @@
 	padding: 15px;
 	resize: none;	
 }
+/* 이모티콘 버튼 , 보내기 버튼 있는 구역  */
 .chattingbtnbox{
 	display: flex;	
-	justify-content: flex-end;
+	justify-content: space-between;
 }
 .sendbtn{
 	padding: 10px;
@@ -72,4 +85,21 @@
 	display: flex;
 	align-items: flex-end;
 	justify-content: flex-start;
+}
+/* 이모티콘 버튼 */
+.emobtn{
+	background-color: transparent;
+	border: none;
+	padding: 5px;
+	font-size: 23px;
+}
+/* 드롭다운시 보이는 구역 */
+.emolist{
+	width: 280px;
+	height: 280px;
+	overflow: scroll;
+}
+/* 내용물안에 사진이 있으면 배경 투명 */
+.emocontent {
+	background-color: transparent !important; 
 }
