@@ -118,7 +118,7 @@ function 메시지받기(e){ // <----- e <-------- getBasicRemote().sendText(msg
 	}else if( JSON.parse(data.msg).type == 'alarm'){
 		contentbox.innerHTML += `
 								<div class="alarm">
-									<span>-- ${ JSON.parse(data.msg).msgbox } --</span>
+									<span> ${ JSON.parse(data.msg).msgbox } </span>
 								</div>
 									` 
 	}
