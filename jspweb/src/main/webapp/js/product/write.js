@@ -1,6 +1,8 @@
 // 제품등록 함수
 let plat = 0;
 let plng = 0;
+
+
 function onwrite(){
 	
 	// 1. 폼 객체
@@ -12,6 +14,11 @@ function onwrite(){
 	writeFormData.set( "plat" , plat );
 	writeFormData.set( "plng" , plng );
 	
+	if( plat == 0 || plng == 0 ){
+		alert('위치 선택후 등록해주세요.');
+		return;
+	}
+	
 	$.ajax({
 		url : "/jspweb/product/info" ,
 		method : "post" ,
@@ -19,16 +26,24 @@ function onwrite(){
 		contentType : false ,			
 		processData : false ,
 		success : (r)=>{
-			console.log(r);
+			if( r == "true"){
+				alert('등록성공');
+				location.href="/jspweb/index.jsp"
+			}else{
+				alert('등록실패')
+			}
+			
 		}
 		
 	})
 }
+
+
 // --------------------------- 지도 클릭 이벤트를 등록합니다 -------------------------------
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
+        center: new kakao.maps.LatLng(37.3218778,126.8308848), // 지도의 중심좌표
+        level: 6 // 지도의 확대 레벨
     };
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
