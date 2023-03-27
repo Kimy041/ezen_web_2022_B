@@ -15,5 +15,7 @@
 	<classpathentry kind="lib" path="C:/cos.jar"/>
 	<classpathentry kind="lib" path="C:/java-activation.jar"/>
 	<classpathentry kind="lib" path="C:/java-mail.jar"/>
+	<classpathentry kind="lib" path="C:/commons-fileupload-1.5.jar"/>
+	<classpathentry kind="lib" path="C:/commons-io-2.11.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
