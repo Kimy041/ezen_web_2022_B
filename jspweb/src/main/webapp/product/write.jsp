@@ -33,16 +33,16 @@
 			
 			
 			<!-- 
-			첨부파일 한개
-			<input type="file" name="pfile" accept="image/*">
-			
-			첨부파일 여라개 [ 서로 다른 file input ] 
-			<input type="file" name="pfile1">
-			<input type="file" name="pfile2">
-			<input type="file" name="pfile3"> 
-			
-			첨부파일 여러개 [ multiple / cos.jar 불가능 , commons 가능 ]
-			<input type="file" multiple="multiple" name="pfiles" accept="image/*">
+				첨부파일 한개
+				<input type="file" name="pfile" accept="image/*">
+				
+				첨부파일 여라개 [ 서로 다른 file input ] 
+				<input type="file" name="pfile1">
+				<input type="file" name="pfile2">
+				<input type="file" name="pfile3"> 
+				
+				첨부파일 여러개 [ multiple / cos.jar 불가능 , commons 가능 ]
+				<input type="file" multiple="multiple" name="pfiles" accept="image/*">
 			-->
 			
 			

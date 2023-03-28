@@ -1,25 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html style="height: 100%"> <!-- 가로/세로 사이즈 생략시 auto( 내용물크기만큼 ) -->
+<html> <!-- 가로/세로 사이즈 생략시 auto( 내용물크기만큼 ) -->
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body style="height: 100%">
+<body>
 	<%@ include file = "/header.jsp" %> <!-- JSP 페이지 포함 -->
 	
 	<!-- 모달창 -->
-	<div style="position: fixed; left: 10px; top: 40%; z-index: 100;  width: 200px; height: 200px; background-color: white;">
+	<div class="searchbox">
 		검색창
 	</div>
 	
 	
-	<div style="display: flex; width: 100%; height: 80%">
+	<div class="contentbox">
 		<!-- 지도 -->
-		<div id="map" style="width:80%;height:80%;"></div>
+		<div id="map" style="width:75%;height:80%;"></div>
 		<!-- 사이드바 -->
-		<div class="produclistbox" style="width: 20%">
+		<div class="produclistbox" >
+			
 		</div>
 	</div>
 	

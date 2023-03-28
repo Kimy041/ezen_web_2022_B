@@ -119,7 +119,7 @@ fileDrop.addEventListener( 'drop' , (e)=>{
 	printfiles();
 })
 
-// 3. 해당구역에 ㄷ드랍된 파일 목록 출력
+// 3. 해당구역에 드랍된 파일 목록 출력
 function printfiles(){
 	let html = ``;
 	fileList.forEach( (f , i)=>{

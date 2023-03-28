@@ -92,12 +92,12 @@ public class Productinfo extends HttpServlet {
 			for( FileItem item : 파일아이템목록 ) { // 요청된 모든 매개변수들을 반복문 돌려서 확인
 				if( item.isFormField() ) {
 					// .isFormField() : 첨부파일 아니면 true 첨부파일이면 false
-					System.out.println("첨부파일 아닌 필드명 : "+ item.getFieldName());
-					System.out.println("첨부파일 아닌 필드의 값 : "+ item.getString());
+					//System.out.println("첨부파일 아닌 필드명 : "+ item.getFieldName());
+					//System.out.println("첨부파일 아닌 필드의 값 : "+ item.getString());
 					일반필드목록.add( item.getString() );	// 리스트 저장
 				}else {
-					System.out.println("첨부파일 인 필드명 : "+ item.getFieldName());
-					System.out.println("첨부파일 인 필드의 값 : "+ item.getName());
+					//System.out.println("첨부파일 인 필드명 : "+ item.getFieldName());
+					//System.out.println("첨부파일 인 필드의 값 : "+ item.getName());
 					
 					// 9. 첨부파일 이름을 식별이름으로 변경 
 						// 1. 파일명의 공뱍이 존재하면 -로 변경 [ .replaceAll("기존문자", "새로운문자") 문자열 치환함수 ]
@@ -113,14 +113,14 @@ public class Productinfo extends HttpServlet {
 					item.write( 업로드할파일 );
 				}
 			}
-			System.out.println( 일반필드목록.toString() );
-			System.out.println( 파일필드목록.toString() );
+			//System.out.println( 일반필드목록.toString() );
+			//System.out.println( 파일필드목록.toString() );
 			
 			int mno = MemberDao.getInstance().getMno( (String)request.getSession().getAttribute("login") );
 			
 			ProductDto dto = new ProductDto( 일반필드목록.get(0), 일반필드목록.get(1), Integer.parseInt(일반필드목록.get(2)) , 일반필드목록.get(3), 일반필드목록.get(4) , mno , 파일필드목록);
 			
-			System.out.println("dto : "+ dto.toString() );
+			//System.out.println("dto : "+ dto.toString() );
 			// dao
 			boolean result = ProductDao.getInstance().write(dto);
 			response.getWriter().print(result);
