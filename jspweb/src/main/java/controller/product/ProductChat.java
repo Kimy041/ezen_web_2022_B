@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import controller.admin.Alarm;
 import model.dao.MemberDao;
 import model.dao.ProductDao;
 import model.dto.ChatDto;
@@ -37,8 +38,9 @@ public class ProductChat extends HttpServlet {
 		
 		int pno = Integer.parseInt( request.getParameter("pno"));
 		int mno = MemberDao.getInstance().getMno( (String)request.getSession().getAttribute("login"));
+		int chatmno = Integer.parseInt( request.getParameter("chatmno"));
 		
-		ArrayList<ChatDto> result = ProductDao.getInstance().getCahtList(pno, mno);
+		ArrayList<ChatDto> result = ProductDao.getInstance().getCahtList(pno, mno, chatmno);
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonArray = mapper.writeValueAsString(result);
 		
@@ -58,11 +60,16 @@ public class ProductChat extends HttpServlet {
 		int frommno = MemberDao.getInstance().getMno( (String)request.getSession().getAttribute("login"));
 		int tomno = Integer.parseInt(request.getParameter("tomno"));
 		
-		//
+		// 2
 		ChatDto dto = new ChatDto(0, ncontent, null, pno, frommno, tomno);
-		
+		// 3
 		boolean result = ProductDao.getInstance().setChat( dto );
-		
+		// 4. 만약에 채팅 등록 성공했으면 tomno 에게 소켓 알림 메시지 보내기
+		if( result ) {
+			// 서버소켓에게 채팅을 박은 유저의 번호와 내용을 전달
+			try { Alarm.서버메시지(null, tomno+","+ncontent);}
+			catch (Exception e) { e.printStackTrace(); }
+		}
 		response.getWriter().print(result);
 	}
 

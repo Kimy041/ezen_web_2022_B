@@ -17,6 +17,11 @@
 </head>
 <body>
 
+	<div class="msgbox">
+		메시지가 도착했습니다.
+	</div>
+
+
 	<div class="container"> <!-- bs 박스권 -->
 	
 		<div class="header">

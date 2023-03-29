@@ -49,6 +49,51 @@ create table board(
     foreign key ( mno ) references member( mno ) on delete set null, -- [회원]pk가 삭제되면 게시물fk는 null 변경
     foreign key ( cno ) references category( cno ) on delete cascade -- [카테고리]pk가 삭제되면 게시물 같이 삭제 
 );
+/* 제품 테이블 */
+drop table if exists product;
+create table product(
+    pno int auto_increment primary key , -- 제품번호
+    pname varchar(500) not null , -- 제품명 
+    pcomment text not null ,  -- 제품설명
+    pprice bigint not null , -- 제품가격
+    pstate int default 1 , -- 상태[ 1:판매중 2:거래중 3:판매완료 등등 ]
+    plat varchar(100) not null, -- 위도
+    plng varchar(100) not null, -- 경도
+    pview int default 0 , -- 조회수
+    pdate datetime default now(), -- 등록일
+    mno int , -- 등록한 회원번호 
+	foreign key (mno) references member(mno) on delete cascade
+);
+/* 제품 사진 테이블 */
+drop table if exists pimg;
+create table pimg( 
+	pimgno bigint auto_increment primary key , -- 사진 식별번호 
+    pimgname longtext not null , -- 사진명 
+    pno int , -- 해당 사진의 연결된 제품번호 
+    foreign key (pno) references product(pno) on delete cascade
+);
+/* 제품 찜하기 테이블 */
+drop table if exists plike;
+create table plike(
+	plinkno bigint auto_increment primary key, /* 식별키 */
+	mno int , /* 회원번호 = 누가 */
+    pno int , /* 제품번호 = 어떤제품 찜했는지 */
+    foreign key (mno) references member(mno) on delete cascade ,
+    foreign key (pno) references product(pno) on delete cascade 
+);
+/* 제품 쪽지 테이블 */
+drop table if exists note;
+create table note(
+	nno bigint auto_increment primary key ,
+    ncontent text not null ,
+    ndate datetime default now() ,
+    pno int ,
+    frommno int ,
+    tomno int,
+    foreign key ( pno ) references product( pno ) on delete cascade ,
+    foreign key ( frommno ) references member( mno ) on delete cascade ,
+    foreign key ( tomno ) references member( mno ) on delete cascade 
+);
 -- on delete cascade 	: pk가 삭제되면 fk 같이 삭제
 -- on delete set null 	: pk가 삭제되면 fk는 null 로 변경 
 -- 생략 					: fk에 존재하는 식별키[pk] 는 삭제 불가능 
