@@ -36,7 +36,7 @@ function getlogin(){
 						</div> <!-- 드롭다운 끝 -->
 						${ r.mid }님
 						<a href="#"> 쪽지함 </a>
-						<a href="#"> ${ r.mpoint } 포인트 </a>
+						<a href="/jspweb/member/point.jsp"> ${ r.mpoint } 포인트 </a>
 						`
 				if( r.mid == 'admin' ){ // 관리자이면
 					html += `<a href="/jspweb/admin/info.jsp" > 관리자페이지 </a>`
